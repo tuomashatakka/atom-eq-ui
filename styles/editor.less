@@ -1,0 +1,40 @@
+
+atom-text-editor {
+  .scroll-view {
+    padding: 0;
+  }
+}
+
+
+atom-text-editor {
+  --background-color: @app-background-color;
+  background-color: var(--background-color) !important;
+  font-weight:      @editor-font-weight;
+
+  .gutter {
+    text-align: right !important;
+    background-color: transparent !important }
+
+  .gutter .line-number {
+    background-color: var(--background-color) !important;
+    --background-color: @gutter-background-color }
+
+  .gutter .cursor-line {
+    --background-color: @gutter-background-color-selected }
+
+  &[with-minimap] atom-overlay {
+    margin-left: 0 !important }
+}
+
+atom-text-editor[mini] {
+  background-color: @base-background-color !important;
+  border-radius: 2em !important;
+  padding-left: 1em;
+  padding-right: 1em;
+
+  &.is-focused {
+    color: @text-color-selected !important;
+    background-color: @base-background-color !important;
+    span[class*='syntax-'] {
+      color: inherit !important } }
+}

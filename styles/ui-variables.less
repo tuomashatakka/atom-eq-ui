@@ -1,0 +1,188 @@
+
+@import "colors";
+@ui-theme-name: eq;
+@transition-time: 400ms;
+
+@base-background-color: @nord0;
+@base-border-color: @nord1;
+@app-background-color: @base-background-color;
+
+@background-color-highlight: @nord2;
+@background-color-selected: @nord1;
+@background-color-info: @nord8;
+@background-color-success: @nord14;
+@background-color-warning: @nord12;
+@background-color-error: @nord11;
+
+/*+--- Text ---+*/
+@text-color:            @nord4;
+@text-color-subtle:     fade(@text-color, 40%);
+@text-color-highlight:  @nord6;
+@text-color-selected:   @text-color-highlight;
+@text-color-info:       @nord8;
+@text-color-success:    @nord14;
+@text-color-warning:    @nord12;
+@text-color-error:      @nord11;
+@text-color-ignored:    @text-color-subtle;
+@text-color-added:      @nord14;
+@text-color-renamed:    @nord8;
+@text-color-modified:   @nord13;
+@text-color-removed:    @nord11;
+
+// Buttons
+@button-background-color: transparent;
+@button-background-color-hover: @input-border-color;
+@button-background-color-selected: @input-border-color;
+@button-border-color: @input-border-color;
+
+/*+--- Gutter ---+*/
+@gutter-background-color: darken(@base-background-color, 2%);
+@gutter-background-color-selected: darken(@base-background-color, 1%);
+@gutter-text-color: @text-color-subtle;
+@gutter-text-color-selected: @text-color-selected;
+
+/*+--- Input ---+*/
+@input-background-color: @nord1;
+@input-border-color: @text-color;
+@input-border-color-active: @input-background-color-active;
+@input-background-color-active: @text-color;
+@input-text-color-active: @base-background-color;
+
+/*+--- Overlay ---+*/
+@overlay-background-color: @tool-panel-background-color;
+@overlay-border-color: @base-border-color;
+
+/*+--- Pane ---+*/
+@pane-item-background-color: @nord2;
+@pane-item-border-color: @base-border-color;
+
+/*+--- Panel ---+*/
+@tool-panel-background-color: @base-background-color;
+@tool-panel-border-color: @base-border-color;
+@inset-panel-background-color: @nord1;
+@inset-panel-border-color: @base-border-color;
+@panel-heading-background-color: @nord1;
+@panel-heading-border-color: @base-border-color;
+
+/*+--- Progress Indicator ---+*/
+@progress-loading-bar-background-color: @nord8;
+
+/*+--- Scrollbar ---+*/
+@scrollbar-color: @nord1;
+@scrollbar-color-active: @nord1;
+@scrollbar-border-color: @nord0;
+@scrollbar-track-color: transparent;
+
+/*+--- Site ---+*/
+@ui-site-color-1: @nord8;
+@ui-site-color-2: @nord14;
+@ui-site-color-3: @nord12;
+@ui-site-color-4: @nord11;
+@ui-site-color-5: @nord13;
+
+/*+--- Tab ---+*/
+@tab-bar-background-color: @app-background-color;
+@tab-bar-border-color: @base-border-color;
+@tab-background-color: @tool-panel-background-color;
+@tab-background-color-active: @nord1;
+@tab-background-color-hover: @nord1;
+@tab-border-color: @base-border-color;
+
+/*+--- Tooltip ---+*/
+@tooltip-text-color: @base-background-color;
+@tooltip-background-color: @text-color;
+@tooltip-key-text-color: @nord8;
+@tooltip-key-background-color: @base-background-color;
+
+/*+--- Tree View ---+*/
+@tree-view-background-color: @tool-panel-background-color;
+@tree-view-border-color: @base-border-color;
+
+/*+----------------+
+  + Configurations +
+  +----------------+*/
+@use-custom-controls: true;
+
+/*+-------+
+  + Fonts +
+  +-------+*/
+@font-family:
+  "BlinkMacSystemFont",
+  "System Font",
+  "Helvetica Neue",
+  "Roboto",
+  "Cantarell",
+  "Ubuntu",
+  "Lucida Grande",
+  "Segoe UI",
+  "Noto Sans",
+  sans-serif;
+
+/*+-----------------+
+  + Package Support +
+  +-----------------+*/
+/*+--- build ---+*/
+@build-terminal-background-color: darken(@nord0, 2%);
+
+/*+--- imdone-atom ---+*/
+@imdone-atom-task-background-color: darken(@nord1, 2%);
+@imdone-atom-task-background-color-draged: @nord1;
+
+/*+--- indent-guide-improved ---+*/
+@indent-guide-improved-base-color: @nord2;
+@indent-guide-improved-active-color: @nord3;
+
+/*+--- markdown-preview ---+*/
+@markdown-preview-background-color: @nord6;
+@markdown-preview-border-color: @nord4;
+@markdown-preview-code-background-color: @nord4;
+@markdown-preview-table-body-color: @nord5;
+@markdown-preview-text-color: @nord0;
+
+/*+--- tool-bar ---+*/
+@tool-bar-spacer-border-color: @nord4;
+
+/*+-------+
+  + Sizes +
+  +-------+*/
+/*+--- Base ---+*/
+@disclosure-arrow-size: 12px;
+@component-icon-size: 16px;
+@component-icon-padding: 5px;
+@component-padding: 1.4em;
+@component-line-height: 26px;
+@component-border-radius: 4px;
+
+/*+--- Font ---+*/
+@font-size: 14px;
+@input-font-size: 14px;
+
+/*+--- Input ---+*/
+@input-height: 32px;
+
+/*+--- List ---+*/
+@list-active-icon-size: 14px;
+
+/*+--- Tab ---+*/
+@tab-height: 40px;
+
+
+@text-size:           12px;
+@font-family:         Helvetica Neue, Proxima Soft, Gotham, Montserrat, Questrial, Raleway;
+@input-font-family:   Gotham, Montserrat, Questrial, Raleway;
+@font-weight:         400;
+@menu-font-weight:    500;
+@input-font-weight:   100;
+@menu-letter-spacing: 2.6px;
+
+@panel-nudge-radius: 2em;
+@toggle-area-size: 20em;
+@toggle-area-outset: 3em;
+@tab-icon-size: 1.6em;
+@tab-height: 4em;
+@tab-bottom-height: 3em;
+@list-item-height: 2.4em;
+@list-head-height: 2 * 2.4em;
+
+@tree-view-font-size: 0.85em;
+@editor-font-weight: 500;

@@ -1,0 +1,225 @@
+
+@panel-heading-text-size: 1.5em;
+@handle-size: 7px;
+@offset-top: 10vh;
+
+atom-panel-container {
+  .dimmed(1%);
+  .no-borders;
+}
+
+atom-pane-container {
+  .dimmed(1%);
+
+  &.bottom {
+    margin-top: 2px;
+    border-top: 1px solid @tool-panel-border-color;
+    z-index: 3 }
+
+  atom-pane-axis {
+  &.horizontal > *:last-child {
+      border-right: none }
+
+    &.horizontal > * {
+      border-right: 1px solid @base-border-color }
+
+    &.vertical > atom-pane-resize-handle.vertical {
+      border-bottom: 1px solid @base-border-color;
+      margin-bottom: -1px }
+  }
+
+
+  .right & atom-pane.pane:last-of-type:not(:only-of-type) {
+    z-index:     1200;
+    margin-left: -@panel-nudge-radius }
+}
+
+
+
+// Panes
+
+atom-pane-container atom-pane .item-views,
+.pane-item {
+  background: @app-background-color !important;
+  border: 0;
+}
+
+.focusable-panel,
+.item-views .focusable-panel {
+  padding: @component-padding }
+
+.inset-panel .panel-heading,
+.panel-heading {
+  .text(heading);
+  font-size: @panel-heading-text-size;
+  line-height: @panel-heading-text-size !important;
+  border-radius: 0;
+
+  .btn {
+    .button(@button-border-color);
+    font-size:   @text-size !important;
+    padding:     0 8px !important;
+    height:      @panel-heading-text-size !important;
+    line-height: inherit !important }
+
+  .btn .btn-primary { .button-variant(@text-color-info) }
+  .btn .btn-info {    .button-variant(@text-color-info) }
+  .btn .btn-success { .button-variant(@text-color-success) }
+  .btn .btn-warning { .button-variant(@text-color-warning) }
+  .btn .btn-error {   .button-variant(@text-color-error) }
+}
+
+// Panels
+
+
+atom-panel {
+  .no-borders;
+  .text(normal);
+
+  background: @tool-panel-background-color;
+
+  &.bottom {
+    background: @app-background-color }
+
+  &.bottom > *:not(:empty) {
+    background: @app-background-color;
+    padding-top: @component-padding/2;
+    z-index: 3 } }
+
+atom-panel.modal.from-top,
+atom-panel.modal {
+  border-radius: @component-border-radius;
+  position: fixed;
+  padding:  4 * @component-padding 3 * @component-padding;
+  top:      @offset-top;
+  left:     auto !important;
+  right:    3vw !important;
+  width:    42em !important;
+  min-width:    60vw !important;
+  box-shadow: -1em 1em 16em rgba(0,0,0,0.5) !important;
+  border-width: 0 0 4px !important;
+
+  ol.list-group {
+    margin: 0;
+    .text(default);
+
+    li {
+      padding: @component-padding @component-padding / 2 !important;
+      .text(default);
+
+      span,
+      span.title,
+      span[title] {
+        font-weight: inherit !important;
+        font-family: inherit !important;
+        font-size:   inherit !important }
+
+      &.selected {
+        font-weight: 600 !important;
+        letter-spacing: -0.02em }}
+  }
+
+  atom-text-editor.editor {
+    .no-borders;
+    .text(display);
+    border-radius: 0 !important
+    border:        none !important;
+    padding:       @component-padding @component-padding @component-padding 1em !important;
+    margin:        0 !important }
+}
+
+
+
+.right atom-pane-container atom-pane.pane {
+  .tab-bar {
+    height:      2em !important;
+    max-height:  2em;
+    line-height: 2em }
+
+  .tab-bar li.tab,
+  .tab-bar li.tab .title {
+    height: inherit;
+    line-height: inherit }
+
+  &:last-of-type:not(:only-of-type) {
+    margin-left: 0 }
+}
+
+
+
+// Parts
+
+.panel-body {
+  background: @tool-panel-background-color;
+  border-radius: @component-border-radius;
+}
+
+
+
+// Docks
+
+.tool-panel {
+  background: var(--background-color) }
+
+atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
+  background: var(--background-color) }
+
+.atom-dock-mask {
+  background: var(--background-color);
+  overflow:   initial
+}
+
+// Fix the gutter caused by handles
+.atom-dock-resize-handle {
+  z-index: 2000;
+
+  &.left { margin-right: -@handle-size }
+  &.right { margin-left: -@handle-size }
+  &.bottom { margin-top: -@handle-size }}
+
+
+
+// Toggle arrows
+
+.atom-dock-toggle-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.left,
+  &.right {
+    width:  @toggle-area-outset;
+    height: @toggle-area-size }
+
+  &.bottom,
+  &.top {
+    height: @toggle-area-outset;
+    width:  @toggle-area-size }
+
+  .atom-dock-toggle-button-inner {
+    display: block;
+    border: none;
+    border-radius: 0;
+    height: inherit;
+    width: inherit;
+    background-color: var(--background-color);
+
+
+    .icon[class*='chevron'] {
+      position:  absolute;
+      width:     inherit;
+      top:       50%;
+      left:      50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      background-color: lighten(@base-background-color, 3%);
+    }
+  }
+}
+
+.atom-dock-toggle-button:not(.atom-dock-toggle-button-visible) .atom-dock-toggle-button-inner {
+  z-index: 600;
+  &.left  { transform: translate(-100%, 0) }
+  &.right { transform: translate(100%, 0) }
+  &.bottom { transform: translate(0, 100%) }}

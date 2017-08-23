@@ -1,0 +1,128 @@
+
+
+
+// Definitions
+
+@color:        mix(@text-color-info, @text-color-highlight);
+@color-subtle: mix(@color, @base-background-color);
+@color-second: #e4286a;
+@color-selected: @text-color-highlight;
+
+@progress-height: 8px;
+@progress-shine-gradient: -webkit-linear-gradient(top, rgba(255, 255, 255, .15), rgba(0, 0, 0, .15));
+
+
+@keyframes buffering {
+   from { background-position: 0px 0; }
+   to { background-position: -100px 0; }
+}
+
+@keyframes spninin {
+  0% {  transform: rotate(0deg) translate(-50%, -50%);
+        border-right-color: @color }
+  50% { border-right-color: @color-second }
+  to  { border-right-color: @color;
+        transform: rotate(360deg) translate(-50%, -50%) }
+}
+
+
+
+// Progress bar
+
+progress {
+  -webkit-appearance: none;
+  height:             @progress-height;
+  border-radius:      @component-border-radius;
+  background-color:   @input-background-color;
+  background-image:   none;
+  border-radius:      2px;
+  background-size:    25px @progress-height, 100% 100%, 100% 100%;
+}
+
+
+progress {
+  -webkit-appearance: none;
+  height: 8px;
+  border-radius: @component-border-radius;
+  background-color: @input-background-color;
+  box-shadow: inset 0 0 0 1px @input-border-color;
+
+  &::-webkit-progress-bar {
+    background-color: transparent }
+
+  &::-webkit-progress-value {
+    border-radius: @component-border-radius;
+    background-color: @progress-loading-bar-background-color }
+
+  &[value] {
+    -webkit-animation: none }
+
+  &:indeterminate {
+    animation: buffering 5s linear 6;
+    background-size: 24px 8px, 100% 100%, 100% 100%;
+    background-image: linear-gradient(
+      -22.5deg,
+      transparent 33%,
+      @progress-loading-bar-background-color 33%,
+      @progress-loading-bar-background-color 66%,
+      transparent 66%) }
+}
+
+
+
+// Spinner
+
+.loading-spinner(@size) {
+  @width:        @size / 8;
+  @speed:        2s;
+
+  width:         @size;
+  height:        @size;
+  display:       block;
+  border:        0 solid @color;
+  position:      relative;
+  box-sizing:    border-box;
+  border-radius: 50%;
+
+  &::after,
+  &::before {
+    content:        "";
+    position:       absolute;
+    width:          @size;
+    height:         @size;
+    border-width:   @width;
+    border-radius:  50%;
+    border-style:   solid;
+    border-color:   transparent;
+    animation:      spninin @speed linear 0s infinite;
+    top:            50%;
+    left:           50%;
+    transform-origin: 0 0;
+  }
+
+  &::after {
+    animation-timing-function: linear;
+    animation-duration:  2.5 * @speed;
+    border-right-color:  @color-subtle;
+    width:               @size * 0.75;
+    height:              @size * 0.75 }
+
+  &.inline-block {
+    display: inline-block;
+  }
+}
+
+[class*=loading-spinner] {
+  background-image: none }
+
+.loading-spinner-large {
+  .loading-spinner(8em) }
+
+.loading-spinner-medium {
+  .loading-spinner(4em) }
+
+.loading-spinner-small {
+  .loading-spinner(2.4em) }
+
+.loading-spinner-tiny {
+  .loading-spinner(1.4em) }

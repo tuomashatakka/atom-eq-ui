@@ -1,0 +1,87 @@
+
+atom-notifications {
+  .text(normal);
+  top: 32px;
+  background-color: transparent;
+
+  .close {
+    transition: all @transition-time ease;
+
+    &:before {
+      color: @text-color;
+    }
+  }
+
+  .btn {
+    height: 24px !important;
+    line-height: 20px !important;
+
+    &.close-all {
+      .button-variant(@text-color-info);
+    }
+  }
+
+  .content,
+  .detail,
+  .message,
+  .meta {
+    color: @text-color;
+    background-color: @overlay-background-color;
+    background-clip: inherit;
+
+    code,
+    .detail-content {
+      background-color: @overlay-border-color;
+      color: @text-color;
+    }
+
+    .stack-toggle {
+      color: @text-color-info;
+    }
+  }
+
+  .meta {
+    .description a {
+        color: @text-color-info;
+    }
+
+    .btn-toolbar .icon-clippy {
+      color: @text-color;
+      padding-left: 5px;
+    }
+  }
+}
+
+
+/**
+ * Notifications
+ */
+
+atom-notifications {
+
+  atom-notification {
+    padding: 1.5em 3.5em !important;
+    margin: 0 0 1px !important }
+
+  atom-notification .content {
+    background: transparent !important;
+    * { background: transparent !important }}
+
+  atom-notification::before {
+    position: absolute;
+    display:  flex !important;
+    width:    auto !important;
+    top:      0;
+    left:     0;
+    right:    0;
+    bottom:   0;
+    z-index: -1;
+    padding:  1.2em       !important;
+    margin:   0           !important;
+    text-align:    left   !important;
+    align-items:   center !important;
+    border-radius: 1px    !important }
+
+  atom-notification.has-close:first-child .message {
+    padding-right: 2em }
+}
