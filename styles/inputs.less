@@ -1,13 +1,17 @@
-/*
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-title      Inputs                                          +
-project    nord-atom-ui                                    +
-repository https://github.com/arcticicestudio/nord-atom-ui +
-author     Arctic Ice Studio                               +
-email      development@arcticicestudio.com                 +
-copyright  Copyright (C) 2016                              +
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-*/
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+input:not([type]),
+textarea,
+select {
+  border-radius: 2em !important;
+  height: @input-height;
+  line-height: @input-height;
+  padding: @component-padding;
+  -webkit-appearance: none;
+}
+
 input[type="checkbox"] {
   &:focus {
     box-shadow: none !important;
@@ -15,5 +19,23 @@ input[type="checkbox"] {
   &:before,
   &:after {
     background: @base-background-color;
+  }
+}
+
+
+// Select inputs - copy from mac
+select.form-control {
+  .button(@button-border-color);
+  .text(normal);
+  height:       @input-height;
+  line-height:  @input-height;
+  text-transform: none;
+
+  .interactions(@button-background-color);
+
+  &:focus,
+  &:hover {
+   background: @button-border-color !important;
+   color: @base-background-color !important;
   }
 }

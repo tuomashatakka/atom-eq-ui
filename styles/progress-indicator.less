@@ -7,7 +7,6 @@
 @color-subtle: mix(@color, @base-background-color);
 @color-second: #e4286a;
 @color-selected: @text-color-highlight;
-
 @progress-height: 8px;
 @progress-shine-gradient: -webkit-linear-gradient(top, rgba(255, 255, 255, .15), rgba(0, 0, 0, .15));
 
@@ -28,7 +27,6 @@
 
 
 // Progress bar
-
 progress {
   -webkit-appearance: none;
   height:             @progress-height;
@@ -39,12 +37,7 @@ progress {
   background-size:    25px @progress-height, 100% 100%, 100% 100%;
 }
 
-
 progress {
-  -webkit-appearance: none;
-  height: 8px;
-  border-radius: @component-border-radius;
-  background-color: @input-background-color;
   box-shadow: inset 0 0 0 1px @input-border-color;
 
   &::-webkit-progress-bar {

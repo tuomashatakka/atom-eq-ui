@@ -77,9 +77,10 @@
   }
 }
 
-/*++++++++
-  + Text +
-  ++++++++*/
+
+
+// Text
+
 .text(error) {
   .text(normal);
   color: @text-color-error;
@@ -151,18 +152,18 @@
 
 
 
-/*+++++++++++
-  + Overlay +
-  +++++++++++*/
+// Shadows
 .overlay-shadow() {
-  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 @shadow-offset @shadow-spread 0 rgba(0, 0, 0, @shadow-opacity) !important;
 }
-
-
 
 
 .no-borders () {
   border-width: 0px !important
+}
+
+.highlighted (@n) {
+  --background-color: lighten(@base-background-color, @n)
 }
 
 .dimmed (@n) {
@@ -203,4 +204,42 @@
   &.active:hover {
     --color: var(--color-active-hover);
     --background-color: var(--background-color-active-hover) }
+}
+
+.status-colors () {
+  color: var(--color);
+  border-color: transparent !important;
+
+  &.added,
+  &.status-added {
+    border-color: var(--color) !important;
+    .with-active-variant(@text-color-added) }
+
+  &.modified,
+  &.status-modified {
+    border-color: var(--color) !important;
+    .with-active-variant(@text-color-modified) }
+
+  &.ignored,
+  &.status-ignored {
+    border-color: var(--color) !important;
+    .with-active-variant(@text-color-ignored) }
+}
+
+.with-active-variant (@color) {
+  --color: @color;
+  &.active {
+    --color: lighten(saturate(@color, 25%), 15%) }
+}
+
+.with-selected-variant (@color) {
+  --color: @color;
+  &.selected {
+    --color: lighten(saturate(@color, 25%), 15%) }
+}
+
+.with-hovered-variant (@color) {
+  --color: @color;
+  &:hover {
+    --color: lighten(saturate(@color, 25%), 15%) }
 }

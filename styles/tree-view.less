@@ -1,6 +1,24 @@
 
 .tree-view {
 
+  .list-tree.full-menu {
+    background: var(--background-color) }
+
+
+  // List items
+  .list-item {
+    height: @list-item-height !important;
+
+    span.name {
+      display: inline-block;
+      font-size: @tree-view-font-size !important }
+
+    span.name,
+    .icon::before {
+      vertical-align: top }}
+
+
+  // Project headers
   &, .list-tree.full-menu, .project-root {
     margin:   0;
     padding:  0 }
@@ -11,7 +29,7 @@
   }
 
   .list-item.project-root-header {
-    background: @base-background-color;
+    background: var(--background-color);
     height:     @list-head-height !important;
     width:      100%;
     z-index:    10000;
@@ -40,18 +58,6 @@
       height: @list-head-height !important;
       line-height: @list-head-height !important;
       box-sizing: border-box }
-  }
-
-  .list-item {
-    height: @list-item-height !important;
-
-    span.name {
-      display: inline-block ;
-      font-size: @tree-view-font-size !important }
-
-    span.name,
-    .icon::before {
-      vertical-align: top }
   }
 
 //   font-size: @font-size;
@@ -89,30 +95,22 @@
 //     }
 //   }
 
-  .project-root.project-root.collapsed {
-    & > .header {
-      &:before {
-        opacity: 0;
-      }
-
-      &:hover {
-        &:before {
-          opacity: 1;
-        }
-      }
-    }
+  .project-root.project-root.collapsed > .header {
+    &:before { opacity: 0 }
+    &:hover::before { opacity: 1 }
   }
 }
 
 .list-group .icon,
 .list-tree .icon {
-  display: inline-block;
-  height: inherit;
+  display:  inline-block;
+  height:   inherit;
+
   &::before {
-    top: initial;
-    line-height: inherit;
-    height: inherit;
-    vertical-align: top;
+    line-height:    inherit;
+    height:         inherit;
+    top:            initial;
+    vertical-align: middle;
   }
 }
 
@@ -137,20 +135,21 @@
     margin:         2.5px;
     transform:      rotate(90deg);
     text-align:     center;
-    transition:     200ms transform, 200ms color;
-    vertical-align: middle }
+    transition:
+      @transition-time transform,
+      @transition-time color }
 
   // Animated caret rotation
   &.collapsed > .list-item::before {
     content:   "\f078";
     top:       0;
     left:      0;
-    margin:    2.5px;
+    margin:    5px;
     transform: rotate(0deg) }
 
   > .list-item:hover::before {
-    transform: rotate(85deg) }
+    transform: rotate(80deg) }
 
   &.collapsed > .list-item:hover::before {
-    transform: rotate(5deg) }
+    transform: rotate(10deg) }
 }

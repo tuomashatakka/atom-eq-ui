@@ -1,151 +1,60 @@
 @color-modified: @text-color-warning;
 
-.tab-bar {
-  background: @tab-bar-background-color;
-  width: 100%;
-  height: @tab-height;
-  padding: 0;
-  display: table;
-  table-layout: fixed;
-  -webkit-transform: scale(1);
-
-  .tab {
-    .text(normal);
-    text-align: center;
-    color: @text-color-subtle;
-    background: @tab-background-color;
-    display: table-cell;
-    width: 100%;
-    height: @tab-height;
-    line-height: @tab-height;
-    box-sizing: border-box;
-    border: 0;
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    position: relative;
-    transition: color @transition-time ease, border @transition-time ease, background @transition-time ease;
-
-    .title {
-      border-width: 3px 0 0 !important;
-      border-style: solid !important;
-      border-color: @tab-background-color-active !important;
-    }
-    &.modified .title {
-      border-color: @color-modified !important;
-    }
-
-    .close-icon:hover:before {
-      color: @text-color-highlight;
-    }
-
-    .status-added,
-    .status-ignored,
-    .status-modified {
-      transition: color @transition-time ease, background @transition-time ease;
-    }
-
-    .status-modified {
-      color: @text-color-modified;
-    }
-
-    .status-added {
-      color: @text-color-added;
-    }
-
-    &:hover {
-      color: @text-color-highlight;
-      background: @tab-background-color-hover;
-    }
+.tab-bar .tab {
+  .status-added,
+  .status-ignored,
+  .status-modified {
+    transition: color @transition-time ease, background @transition-time ease;
   }
 
-  .tab.active,
-  .tab:hover.active {
-    color: @text-color-selected;
-    background-color: @tab-background-color-active;
-    width: 100%;
-
-    &:only-child {
-      background-color: @base-background-color;
-    }
-
-    &.title {
-      color: @text-color-selected;
-      padding: 0;
-    }
-
-    .status-modified {
-      color: @text-color-modified;
-    }
-
-    .status-added {
-      color: @text-color-added;
-    }
-
-    .status-ignored {
-      color: @text-color-ignored;
-    }
+  .status-modified {
+    color: @text-color-modified;
   }
 
-  .tab.modified:hover .close-icon:before {
-    color: @text-color-info;
+  .status-added {
+    color: @text-color-added;
   }
 
-  .tab.modified:not(:hover) .close-icon {
-    opacity: 1;
-    top: (@tab-height - 6) / 2;
-    right: 8px;
-    display: inline-block;
-    border-color: @background-color-info;
-    border-width: 2px;
-  }
-
-  .tab .close-icon {
-    top: (@tab-height - 16) / 2;
-    height: 16px;
-    width: 16px;
-    left: auto;
-    right: 4px;
-    position: absolute;
-    transform: scale(0);
-    opacity: 0;
-    transition: transform @transition-time ease, color @transition-time ease, background @transition-time ease;
-
-    &:before {
-      color: @text-color-subtle;
-      font-size: 12px;
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      width: 13px;
-      height: 12px;
-      transition: transform @transition-time ease, color @transition-time ease, background @transition-time ease;
-    }
-  }
-
-  .placeholder {
-    display: none;
+  &:hover {
+    color: @text-color-highlight;
+    background: @tab-background-color-hover;
   }
 }
 
+.tab-bar .tab.active,
+.tab-bar .tab:hover.active {
+  color: @text-color-selected;
+  background-color: @tab-background-color-active;
+  width: 100%;
+}
 
 
 .tab-bar {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+  -webkit-transform: scale(1);
   height: auto;
 }
 
 .tab-bar .tab {
   .text(menu);
-  .interactions(@base-background-color);
+  .status-colors;
+  .interactions(darken(@tab-bar-background-color, 4%));
 
-  &.modified {
-    border-bottom: 2px solid @text-color-warning;
-  }
+  width:        100%;
+  display:      table-cell;
+  position:     relative;
+  text-align:   center;
+  transition:   @transition-color;
+  line-height:  @tab-height - @component-padding;
+  padding:      @component-padding / 2;
+  height:       @tab-height;
 
-  padding: 0 !important;
-  height: @tab-height;
-  max-height: @tab-height;
-  line-height: @tab-height;
-  background-color: @base-background-color;
+  .title {
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: inherit !important }
 
   .icon,
   .icon::before {
@@ -155,17 +64,21 @@
     margin:  0 }
 
   .icon::before {
-    padding:      0 @component-padding / 2 0 0;
-    height:       @tab-icon-size;
+    margin:       0 @component-padding / 4 0 @component-padding / 8;
     font-size:    @tab-icon-size;
-    line-height:  @tab-icon-size }
+    width:        1.2em;
+    height:       1.2em;
+    line-height:  1.2em }
 
   .bottom & {
     height:    @tab-bottom-height;
     max-height: @tab-bottom-height;
     line-height: @tab-bottom-height;
   }
- }
+}
+
+.tab-bar .placeholder {
+  display: none }
 
 
 .close-icon {
@@ -194,10 +107,14 @@
 
   // Default
   .tab-bar .tab & {
+    transition: transform @transition-time ease, color @transition-time ease, background @transition-time ease;
     transform: scale(1) translate(-50%, -50%);
+    opacity: 0;
     top:      50%;
     right:    0.2em;
     cursor: pointer;
+    height: 16px;
+    width: 16px;
 
     border: 0px solid rgba(200,200,200,0.1);
     border-color: var(--color);

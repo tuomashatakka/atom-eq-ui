@@ -1,112 +1,103 @@
 
 @import "colors";
-@ui-theme-name: eq;
-@transition-time: 400ms;
+@ui-theme-name:   eq;
+@transition-time: 483ms;
+@transition-color:
+  color @transition-time ease,
+  border-color @transition-time ease,
+  background-color @transition-time ease;
 
-@base-background-color: @nord0;
-@base-border-color: @nord1;
-@app-background-color: @base-background-color;
-
-@background-color-highlight: @nord2;
-@background-color-selected: @nord1;
-@background-color-info: @nord8;
-@background-color-success: @nord14;
-@background-color-warning: @nord12;
-@background-color-error: @nord11;
-
-/*+--- Text ---+*/
-@text-color:            @nord4;
-@text-color-subtle:     fade(@text-color, 40%);
-@text-color-highlight:  @nord6;
-@text-color-selected:   @text-color-highlight;
-@text-color-info:       @nord8;
-@text-color-success:    @nord14;
-@text-color-warning:    @nord12;
-@text-color-error:      @nord11;
+@text-color:            @eq-color-text;
+@text-color-subtle:     mix(@eq-color-text, @eq-color-base, 50%);
+@text-color-highlight:  @eq-color-highlight;
+@text-color-selected:   lighten(@eq-color-highlight, 1%);
 @text-color-ignored:    @text-color-subtle;
-@text-color-added:      @nord14;
-@text-color-renamed:    @nord8;
-@text-color-modified:   @nord13;
-@text-color-removed:    @nord11;
 
-// Buttons
-@button-background-color: transparent;
-@button-background-color-hover: @input-border-color;
-@button-background-color-selected: @input-border-color;
-@button-border-color: @input-border-color;
+@text-color-info:       @eq-color-info;
+@text-color-renamed:    @eq-color-info;
+@text-color-success:    @eq-color-success;
+@text-color-added:      @eq-color-success;
+@text-color-warning:    @eq-color-warning;
+@text-color-modified:   @eq-color-modified;
+@text-color-error:      @eq-color-error;
+@text-color-removed:    @eq-color-error;
 
-/*+--- Gutter ---+*/
-@gutter-background-color: darken(@base-background-color, 2%);
-@gutter-background-color-selected: darken(@base-background-color, 1%);
-@gutter-text-color: @text-color-subtle;
-@gutter-text-color-selected: @text-color-selected;
+@background-color-highlight:  @eq-color-annotation;
+@background-color-selected:   @eq-color-dark;
+@background-color-info:       @eq-color-info;
+@background-color-success:    @eq-color-success;
+@background-color-warning:    @eq-color-warning;
+@background-color-error:      @eq-color-error;
 
-/*+--- Input ---+*/
-@input-background-color: @nord1;
-@input-border-color: @text-color;
-@input-border-color-active: @input-background-color-active;
-@input-background-color-active: @text-color;
-@input-text-color-active: @base-background-color;
+@ui-site-color-1: @eq-color-info;
+@ui-site-color-2: @eq-color-success;
+@ui-site-color-3: @eq-color-warning;
+@ui-site-color-4: @eq-color-error;
+@ui-site-color-5: @eq-color-modified;
 
-/*+--- Overlay ---+*/
-@overlay-background-color: @tool-panel-background-color;
-@overlay-border-color: @base-border-color;
+@progress-loading-bar-background-color: @eq-color-info;
 
-/*+--- Pane ---+*/
-@pane-item-background-color: @nord2;
-@pane-item-border-color: @base-border-color;
 
-/*+--- Panel ---+*/
-@tool-panel-background-color: @base-background-color;
-@tool-panel-border-color: @base-border-color;
-@inset-panel-background-color: @nord1;
-@inset-panel-border-color: @base-border-color;
-@panel-heading-background-color: @nord1;
-@panel-heading-border-color: @base-border-color;
+@base-border-color:     @eq-color-dark;
+@app-background-color:  @eq-color-base;
+@base-background-color: @eq-color-base;
 
-/*+--- Progress Indicator ---+*/
-@progress-loading-bar-background-color: @nord8;
+@button-background-color:           transparent;
+@button-background-color-hover:     @input-border-color;
+@button-background-color-selected:  @input-border-color;
 
-/*+--- Scrollbar ---+*/
-@scrollbar-color: @nord1;
-@scrollbar-color-active: @nord1;
-@scrollbar-border-color: @nord0;
-@scrollbar-track-color: transparent;
+@input-text-color-active:           @eq-color-base;
+@input-background-color:            @eq-color-dark;
+@input-background-color-active:     @eq-color-annotation;
 
-/*+--- Site ---+*/
-@ui-site-color-1: @nord8;
-@ui-site-color-2: @nord14;
-@ui-site-color-3: @nord12;
-@ui-site-color-4: @nord11;
-@ui-site-color-5: @nord13;
+@gutter-text-color:                 @text-color-subtle;
+@gutter-text-color-selected:        @text-color-selected;
+@gutter-background-color:           lighten(@eq-color-base, 1%);
+@gutter-background-color-selected:  lighten(@eq-color-base, 2%);
 
-/*+--- Tab ---+*/
-@tab-bar-background-color: @app-background-color;
-@tab-bar-border-color: @base-border-color;
-@tab-background-color: @tool-panel-background-color;
-@tab-background-color-active: @nord1;
-@tab-background-color-hover: @nord1;
-@tab-border-color: @base-border-color;
+@overlay-background-color:          @eq-color-base;
+@pane-item-background-color:        @eq-color-base;
+@tree-view-background-color:        @eq-color-base;
+@tool-panel-background-color:       @eq-color-base;
+@inset-panel-background-color:      @eq-color-dark;
+@panel-heading-background-color:    @eq-color-dark;
 
-/*+--- Tooltip ---+*/
-@tooltip-text-color: @base-background-color;
-@tooltip-background-color: @text-color;
-@tooltip-key-text-color: @nord8;
-@tooltip-key-background-color: @base-background-color;
+@tab-bar-background-color:    @eq-color-base;
+@tab-background-color:        lighten(@eq-color-dark, 2%);
+@tab-background-color-hover:  lighten(@eq-color-dark, 4%);
+@tab-background-color-active: lighten(@eq-color-dark, 0%);
 
-/*+--- Tree View ---+*/
-@tree-view-background-color: @tool-panel-background-color;
-@tree-view-border-color: @base-border-color;
+@scrollbar-track-color:       transparent;
+@scrollbar-color:             @eq-color-dark;
+@scrollbar-color-active:      @eq-color-dark;
 
-/*+----------------+
-  + Configurations +
-  +----------------+*/
+@input-border-color:          @eq-color-text;
+@input-border-color-active:   @input-background-color-active;
+@button-border-color:         @input-border-color;
+@scrollbar-border-color:      @base-border-color;
+@overlay-border-color:        @base-border-color;
+@pane-item-border-color:      @base-border-color;
+@inset-panel-border-color:    @base-border-color;
+@tool-panel-border-color:     @base-border-color;
+@panel-heading-border-color:  @base-border-color;
+@tab-bar-border-color:        @base-border-color;
+@tab-border-color:            @base-border-color;
+@tree-view-border-color:      @base-border-color;
+
+@tooltip-text-color:          @eq-color-text;
+@tooltip-background-color:    @eq-color-annotation;
+@tooltip-key-text-color:      @eq-color-info;
+@tooltip-key-background-color: @eq-color-annotation;
+
+
 @use-custom-controls: true;
 
-/*+-------+
-  + Fonts +
-  +-------+*/
-@font-family:
+@font-family-base:
+  "Gotham",
+  "Montserrat",
+  "Questrial",
+  "Raleway",
+  "Open sans",
   "BlinkMacSystemFont",
   "System Font",
   "Helvetica Neue",
@@ -118,71 +109,67 @@
   "Noto Sans",
   sans-serif;
 
-/*+-----------------+
-  + Package Support +
-  +-----------------+*/
+@font-family:
+  "Source Sans Pro",
+  "Roboto Condensed",
+  "Proxima Soft",
+  @font-family-base;
+
+@input-font-family:
+  @font-family-base;
+
+
 /*+--- build ---+*/
-@build-terminal-background-color: darken(@nord0, 2%);
+@build-terminal-background-color: darken(@eq-color-base, 2%);
 
 /*+--- imdone-atom ---+*/
-@imdone-atom-task-background-color: darken(@nord1, 2%);
-@imdone-atom-task-background-color-draged: @nord1;
+@imdone-atom-task-background-color: darken(@eq-color-dark, 2%);
+@imdone-atom-task-background-color-draged: @eq-color-dark;
 
 /*+--- indent-guide-improved ---+*/
-@indent-guide-improved-base-color: @nord2;
-@indent-guide-improved-active-color: @nord3;
+@indent-guide-improved-base-color: @eq-color-annotation;
+@indent-guide-improved-active-color: @eq-color-input;
 
 /*+--- markdown-preview ---+*/
-@markdown-preview-background-color: @nord6;
-@markdown-preview-border-color: @nord4;
-@markdown-preview-code-background-color: @nord4;
-@markdown-preview-table-body-color: @nord5;
-@markdown-preview-text-color: @nord0;
+@markdown-preview-background-color: @eq-color-highlight;
+@markdown-preview-border-color: @eq-color-text;
+@markdown-preview-code-background-color: @eq-color-text;
+@markdown-preview-table-body-color: @eq-color-annotation;
+@markdown-preview-text-color: @eq-color-base;
 
 /*+--- tool-bar ---+*/
-@tool-bar-spacer-border-color: @nord4;
+@tool-bar-spacer-border-color: @eq-color-text;
 
-/*+-------+
-  + Sizes +
-  +-------+*/
-/*+--- Base ---+*/
-@disclosure-arrow-size: 12px;
-@component-icon-size: 16px;
-@component-icon-padding: 5px;
-@component-padding: 1.4em;
-@component-line-height: 26px;
+@icon-size:               2em;
+@disclosure-arrow-size:   0.8em;
 @component-border-radius: 4px;
+@component-padding:       1.5em;
+@component-line-height:   2em;
+@menu-letter-spacing:     3px;
 
-/*+--- Font ---+*/
-@font-size: 14px;
-@input-font-size: 14px;
+@component-icon-padding:  0.35em;
+@component-icon-size:     @icon-size;
+@tab-icon-size:           @icon-size;
+@list-active-icon-size:   @icon-size;
 
-/*+--- Input ---+*/
-@input-height: 32px;
+@font-size:               16px;
+@input-font-size:         18px;
+@tree-view-font-size:     0.85em;
 
-/*+--- List ---+*/
-@list-active-icon-size: 14px;
+@tab-height:              6.4em;
+@tab-bottom-height:       0.8 * @tab-height;
+@input-height:            2.4 * @input-font-size;
+@list-item-height:        2em;
+@list-head-height:        2 * @list-item-height;
 
-/*+--- Tab ---+*/
-@tab-height: 40px;
+@font-weight:             500;
+@menu-font-weight:        400;
+@input-font-weight:       200;
+@editor-font-weight:      500;
 
-
-@text-size:           12px;
-@font-family:         Helvetica Neue, Proxima Soft, Gotham, Montserrat, Questrial, Raleway;
-@input-font-family:   Gotham, Montserrat, Questrial, Raleway;
-@font-weight:         400;
-@menu-font-weight:    500;
-@input-font-weight:   100;
-@menu-letter-spacing: 2.6px;
-
-@panel-nudge-radius: 2em;
-@toggle-area-size: 20em;
-@toggle-area-outset: 3em;
-@tab-icon-size: 1.6em;
-@tab-height: 4em;
-@tab-bottom-height: 3em;
-@list-item-height: 2.4em;
-@list-head-height: 2 * 2.4em;
-
-@tree-view-font-size: 0.85em;
-@editor-font-weight: 500;
+@panel-nudge-radius:      2em;
+@toggle-area-size:        20em;
+@toggle-area-outset:      0em;
+@shadow-spread:           3em;
+@shadow-offset:           0.2em;
+@shadow-opacity:          0.2;

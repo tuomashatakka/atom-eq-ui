@@ -1,3 +1,11 @@
+@scrollbar-size: 0.75em;
+
+body,
+atom-workspace,
+atom-panel {
+  background-color: @base-background-color !important;
+}
+
 .project-find,
 .find-and-replace {
   atom-text-editor[mini].is-focused {
@@ -25,134 +33,73 @@
   }
 }
 
-/*++++++++++++++++++++
-  + Keybinding Badges +
-  ++++++++++++++++++++*/
+// Badges and labels
 kbd {
   .text(normal);
-  color: @tooltip-key-text-color;
-  background: @tooltip-key-background-color;
-  font-size: 90%;
-  border: 1px solid @tooltip-key-text-color;
-  border-radius: @component-border-radius/2;
-  margin-left: @component-padding/2;
+  --color: @tooltip-key-text-color;
+  --background-color: @tooltip-key-background-color;
+
+  color:          var(--color);
+  background:     var(--background-color);
+  font-size:      0.85em;
+  border:         1px solid @tooltip-key-text-color;
+  border-radius:  @component-border-radius / 1.5;
+  margin-left:    @component-padding / 2;
 }
 
-/*++++++++++++++
-  + Scrollbars +
-  +++++++++++++*/
+
+// Scrollbars
 .scrollbars-visible-always {
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
+    width:  @scrollbar-size;
+    height: @scrollbar-size }
 
   ::-webkit-scrollbar-track,
   ::-webkit-scrollbar-corner {
-    background: @scrollbar-track-color;
-  }
+    background: @scrollbar-track-color }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    border: 1px solid @scrollbar-border-color;
+    border: none;
+    border-radius: @scrollbar-size / 2;
     background: @scrollbar-color;
     background-clip: content-box;
 
     &:active,
     &:hover {
-      border: 1px solid @scrollbar-border-color;
-      background: @scrollbar-color-active;
-    }
-  }
+      background: @scrollbar-color-active }}
 
   atom-text-editor,
   .settings-view {
     ::-webkit-scrollbar-track,
     ::-webkit-scrollbar-corner {
-      background: @base-background-color;
-    }
+      background: @base-background-color }
 
     ::-webkit-scrollbar-thumb {
-      border: 1px solid @base-background-color;
-      background: @scrollbar-color;
-
-      &:active,
-      &:hover {
-        border: 1px solid @base-background-color;
-      }
-    }
-  }
+      border: none;
+      background: @scrollbar-color }}
 }
 
-/*++++++++++++++++
-  + Select Forms +
-  ++++++++++++++++*/
-select.form-control {
-  .button(@button-border-color);
-  .text(normal);
-  height: @input-height;
-  line-height: @input-height;
-  text-transform: none;
-
-  &:focus,
-  &:hover {
-   background: @button-border-color !important;
-   color: @base-background-color !important;
-  }
-}
-
-/*++++++++++++++++
-  + Text Editors +
-  ++++++++++++++++*/
-atom-text-editor[mini] {
-  transition: all @transition-time ease;
-  background-color: @input-background-color;
-  border: 1px solid @input-background-color;
-  border-radius: @component-border-radius;
-  padding-left: @component-padding / 2;
-  height: @input-height;
-  max-height: @input-height;
-  line-height: @input-height - 2px;
-
-  .syntax--text,
-  .syntax--source {
-    color: @text-color;
-  }
-
-  .placeholder-text {
-    .text(subtle);
-    height: @input-height;
-    line-height: @input-height - 2px;
-  }
-
-  .cursor {
-    border-color: @text-color-highlight;
-  }
-}
-
-atom-text-editor[mini].is-focused {
-  border: 1px solid @input-border-color-active;
-  background-color: @input-background-color-active;
-
-  .syntax--text,
-  .syntax--source {
-    color: @input-text-color-active;
-  }
 
 
-  &:hover {
-    border: 1px solid @text-color-highlight;
-    background-color: @input-background-color-active;
-    color: @text-color-highlight;
-  }
+// Borders n shading
+@borders: 0px;
 
-  .selection .region {
-    background-color: fade(@background-color-highlight, 40%);
-  }
-}
+.brdr (@alignment) {
+  border-color: lighten(@tool-panel-border-color, 5%) !important;
+  border-style: solid !important;
+  border-width: 0 !important;
+  border-@{alignment}-width: @borders !important }
 
-body,
-atom-workspace,
-atom-panel {
-  background-color: @base-background-color !important;
-}
+status-bar {
+  margin-left: -@borders;
+  margin-right: -@borders;
+  .brdr(top) }
+
+atom-panel-container.right {
+  .brdr(left) }
+
+atom-panel-container.left {
+  .brdr(right) }
+
+atom-pane-container.panes atom-pane-axis {
+  flex-grow: 1 !important }

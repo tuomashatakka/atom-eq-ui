@@ -1,40 +1,78 @@
 
 atom-text-editor {
-  .scroll-view {
-    padding: 0;
-  }
-}
-
-
-atom-text-editor {
-  --background-color: @app-background-color;
+  .dimmed(0);
   background-color: var(--background-color) !important;
   font-weight:      @editor-font-weight;
 
   .gutter {
-    text-align: right !important;
-    background-color: transparent !important }
-
-  .gutter .line-number {
-    background-color: var(--background-color) !important;
-    --background-color: @gutter-background-color }
+    text-align: right !important }
 
   .gutter .cursor-line {
     --background-color: @gutter-background-color-selected }
 
+  .gutter .line-numbers {
+    .dimmed(0);
+    background-color: var(--background-color) !important;}
+    // --background-color: @gutter-background-color }
+
+  .gutter .line-number {
+    .dimmed(0);
+    background-color: var(--background-color) !important;}
+
   &[with-minimap] atom-overlay {
     margin-left: 0 !important }
+
+  .scroll-view {
+    padding: 0 }
 }
 
 atom-text-editor[mini] {
-  background-color: @base-background-color !important;
-  border-radius: 2em !important;
-  padding-left: 1em;
-  padding-right: 1em;
+  transition: all @transition-time ease;
+  padding-left: @component-padding;
+  padding-right: @component-padding;
+  line-height: @input-height - 2px;
+  max-height: @input-height;
+  height: @input-height;
 
-  &.is-focused {
-    color: @text-color-selected !important;
-    background-color: @base-background-color !important;
-    span[class*='syntax-'] {
-      color: inherit !important } }
+  border: 1px solid @input-background-color;
+  background-color: @base-background-color;
+  border-radius: @component-border-radius;
+  border-radius: 2em !important;
+
+  .syntax--text,
+  .syntax--source {
+    color: @text-color }
+
+  .placeholder-text {
+    .text(subtle);
+    height: @input-height;
+    line-height: @input-height - 2px;
+  }
+
+  .cursor {
+    border-color: @text-color-highlight;
+  }
+}
+
+atom-text-editor[mini].is-focused {
+  border: 1px solid @input-border-color-active;
+  color: @text-color-selected !important;
+  background-color: @input-background-color-active;
+  background-color: @base-background-color !important;
+
+  span[class*='syntax-'] {
+    color: inherit !important }
+
+  .syntax--text,
+  .syntax--source {
+    color: @input-text-color-active }
+
+
+  &:hover {
+    border: 1px solid @text-color-highlight;
+    background-color: @input-background-color-active;
+    color: @text-color-highlight }
+
+  .selection .region {
+    background-color: fade(@background-color-highlight, 40%) }
 }

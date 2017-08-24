@@ -1,25 +1,41 @@
-/*
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-title      Status Bar                                      +
-project    nord-atom-ui                                    +
-repository https://github.com/arcticicestudio/nord-atom-ui +
-author     Arctic Ice Studio                               +
-email      development@arcticicestudio.com                 +
-copyright  Copyright (C) 2016                              +
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-*/
+
+.status-bar-item () {
+  margin: 0 @component-padding / 4;
+  font-size: 0.93em;
+  flex-grow: 0;
+  flex-shrink: 1;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+
 status-bar {
-  .text(subtle);
-  background: @base-border-color;
-  height: @input-height;
-  line-height: @component-line-height;
-  font-size: 11px;
+  @margin: @component-padding * 0.5;
 
-  & > .flexbox-repaint-hack {
-    padding-top: 3px;
-  }
+  .text(menu);
+  .highlighted(1%);
 
-  span {
-    font-size: 11px;
+  background:   var(--background-color) !important;
+  line-height:  @component-line-height;
+  height:       @component-line-height + @component-padding;
+  padding:      @margin 0;
+  box-sizing:   content-box;
+
+  .flexbox-repaint-hack {
+    padding: 0 @margin / 2 }
+
+  .status-bar-left {
+    justify-content: flex-start }
+
+  .status-bar-right {
+    justify-content: flex-end }
+
+  .status-bar-left,
+  .status-bar-right {
+    background: transparent;
+    display: flex;
+    align-items: center;
+
+     > * { .status-bar-item }
   }
 }

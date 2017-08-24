@@ -1,58 +1,48 @@
 
 @panel-heading-text-size: 1.5em;
 @handle-size: 7px;
-@offset-top: 10vh;
-
-atom-panel-container {
-  .dimmed(1%);
-  .no-borders;
-}
-
-atom-pane-container {
-  .dimmed(1%);
-
-  &.bottom {
-    margin-top: 2px;
-    border-top: 1px solid @tool-panel-border-color;
-    z-index: 3 }
-
-  atom-pane-axis {
-  &.horizontal > *:last-child {
-      border-right: none }
-
-    &.horizontal > * {
-      border-right: 1px solid @base-border-color }
-
-    &.vertical > atom-pane-resize-handle.vertical {
-      border-bottom: 1px solid @base-border-color;
-      margin-bottom: -1px }
-  }
-
-
-  .right & atom-pane.pane:last-of-type:not(:only-of-type) {
-    z-index:     1200;
-    margin-left: -@panel-nudge-radius }
-}
-
 
 
 // Panes
 
-atom-pane-container atom-pane .item-views,
-.pane-item {
-  background: @app-background-color !important;
-  border: 0;
+atom-panel-container {
+  .dimmed(1);
+  .no-borders }
+
+atom-pane-container.bottom {
+    margin-top: 2px;
+    border-top: 1px solid @tool-panel-border-color;
+    z-index: 3 }
+
+atom-pane-axis {
+  &.horizontal > *:last-child {
+      border-right: none }
+
+  &.horizontal > * {
+    border-right: 1px solid @base-border-color }
+
+  &.vertical > atom-pane-resize-handle.vertical {
+    border-bottom: 1px solid @base-border-color;
+    margin-bottom: -1px }
 }
 
+// .right atom-pane-container atom-pane.pane:last-of-type:not(:only-of-type) {
+//   z-index:     1200;
+//   margin-left: -@panel-nudge-radius }
+atom-pane .item-views,
+.pane-item {
+  .no-borders }
+
 .focusable-panel,
+.padded[class*='panel'],
 .item-views .focusable-panel {
   padding: @component-padding }
 
 .inset-panel .panel-heading,
 .panel-heading {
   .text(heading);
-  font-size: @panel-heading-text-size;
-  line-height: @panel-heading-text-size !important;
+  font-size:     @panel-heading-text-size;
+  line-height:   @panel-heading-text-size !important;
   border-radius: 0;
 
   .btn {
@@ -69,114 +59,71 @@ atom-pane-container atom-pane .item-views,
   .btn .btn-error {   .button-variant(@text-color-error) }
 }
 
-// Panels
 
+// Panels & panes
+
+atom-pane:only-child {
+  flex-grow: 1 !important }
+
+atom-dock,
+atom-pane,
+atom-panel,
+.pane-item,
+.inset-panel,
+.tool-panel,
+.panel-body {
+  .no-borders;
+  background: var(--background-color) !important;
+  border-radius: @component-border-radius }
+
+atom-pane,
+atom-panel,
+atom-dock,
+.panel-body {
+  .dimmed(1) }
+
+.pane-item,
+.inset-panel,
+.tool-panel {
+  .dimmed(1.5) }
 
 atom-panel {
-  .no-borders;
+  --background-color: @tool-panel-background-color;
   .text(normal);
-
-  background: @tool-panel-background-color;
 
   &.bottom {
     background: @app-background-color }
 
-  &.bottom > *:not(:empty) {
+  &.bottom > *:not(:empty):not(.status-bar) {
     background: @app-background-color;
     padding-top: @component-padding/2;
     z-index: 3 } }
 
-atom-panel.modal.from-top,
-atom-panel.modal {
-  border-radius: @component-border-radius;
-  position: fixed;
-  padding:  4 * @component-padding 3 * @component-padding;
-  top:      @offset-top;
-  left:     auto !important;
-  right:    3vw !important;
-  width:    42em !important;
-  min-width:    60vw !important;
-  box-shadow: -1em 1em 16em rgba(0,0,0,0.5) !important;
-  border-width: 0 0 4px !important;
 
-  ol.list-group {
-    margin: 0;
-    .text(default);
-
-    li {
-      padding: @component-padding @component-padding / 2 !important;
-      .text(default);
-
-      span,
-      span.title,
-      span[title] {
-        font-weight: inherit !important;
-        font-family: inherit !important;
-        font-size:   inherit !important }
-
-      &.selected {
-        font-weight: 600 !important;
-        letter-spacing: -0.02em }}
-  }
-
-  atom-text-editor.editor {
-    .no-borders;
-    .text(display);
-    border-radius: 0 !important
-    border:        none !important;
-    padding:       @component-padding @component-padding @component-padding 1em !important;
-    margin:        0 !important }
-}
-
-
-
-.right atom-pane-container atom-pane.pane {
-  .tab-bar {
+.right atom-pane-container {
+  atom-pane.pane .tab-bar {
     height:      2em !important;
     max-height:  2em;
     line-height: 2em }
 
-  .tab-bar li.tab,
-  .tab-bar li.tab .title {
+  atom-pane.pane .tab-bar li.tab,
+  atom-pane.pane .tab-bar li.tab .title {
     height: inherit;
     line-height: inherit }
 
-  &:last-of-type:not(:only-of-type) {
+  atom-pane.pane:last-of-type:not(:only-of-type) {
     margin-left: 0 }
 }
 
 
-
-// Parts
-
-.panel-body {
-  background: @tool-panel-background-color;
-  border-radius: @component-border-radius;
-}
-
-
-
 // Docks
-
-.tool-panel {
-  background: var(--background-color) }
 
 atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
   background: var(--background-color) }
 
 .atom-dock-mask {
   background: var(--background-color);
-  overflow:   initial
-}
-
-// Fix the gutter caused by handles
-.atom-dock-resize-handle {
-  z-index: 2000;
-
-  &.left { margin-right: -@handle-size }
-  &.right { margin-left: -@handle-size }
-  &.bottom { margin-top: -@handle-size }}
-
+  overflow:   initial }
 
 
 // Toggle arrows
@@ -218,8 +165,17 @@ atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
   }
 }
 
+.atom-dock-resize-handle {
+  z-index: 2000;
+
+  // Fix the gutter caused by handles
+  &.left { margin-right: -@handle-size / 2 }
+  &.right { margin-left: -@handle-size / 2 }
+  &.bottom { margin-top: -@handle-size / 2 }}
+
 .atom-dock-toggle-button:not(.atom-dock-toggle-button-visible) .atom-dock-toggle-button-inner {
   z-index: 600;
+
   &.left  { transform: translate(-100%, 0) }
   &.right { transform: translate(100%, 0) }
   &.bottom { transform: translate(0, 100%) }}

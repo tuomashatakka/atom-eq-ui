@@ -1,13 +1,4 @@
-/*
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-title      Tooltips                                        +
-project    nord-atom-ui                                    +
-repository https://github.com/arcticicestudio/nord-atom-ui +
-author     Arctic Ice Studio                               +
-email      development@arcticicestudio.com                 +
-copyright  Copyright (C) 2016                              +
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-*/
+
 .tooltip {
   white-space: nowrap;
 
@@ -27,13 +18,14 @@ copyright  Copyright (C) 2016                              +
 
   .tooltip-inner {
     .text(normal);
+    .overlay-shadow();
+
     line-height: @component-line-height;
     border-radius: @component-border-radius;
     background-color: @tooltip-background-color;
     color: @tooltip-text-color !important;
     white-space: nowrap;
     max-width: none;
-    .overlay-shadow();
   }
 
   &.top .tooltip-arrow {

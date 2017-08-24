@@ -1,7 +1,11 @@
+@offset-top: 10vh;
+
+// atom-panel.modal.from-top,
 atom-panel.modal,
 .overlay {
   .overlay-shadow();
   .text(normal);
+
   background-color: @overlay-background-color;
   border-radius: @component-border-radius !important;
   border: 1px solid @base-border-color !important;
@@ -9,19 +13,10 @@ atom-panel.modal,
   width: 680px;
   margin-left: -340px;
 
-  @media (max-width: 680px) {
-    & {
-      width: 100%;
-      left: 0;
-      margin-left: 0;
-    }
-  }
-
   label,
   p {
     .text(normal);
-    font-weight: 200;
-  }
+    font-weight: 200 }
 
   atom-text-editor[mini],
   atom-text-editor.mini {
@@ -51,8 +46,7 @@ atom-panel.modal,
   }
 
   &.from-top {
-    top: 20vh;
-  }
+    top: 20vh }
 
   .loading,
   .error-message {
@@ -62,44 +56,30 @@ atom-panel.modal,
     padding-bottom: @component-padding;
   }
 
-  ul.list-group,
-  .select-list ol.list-group,
-  &.select-list ol.list-group {
-    margin: 0 -@component-padding*2 -@component-padding;
+  &, &.from-top {
+    top: @offset-top }
 
-    li .character-match {
-      .text(normal);
-    }
+  left:       auto !important;
+  right:      4vw !important;
+  width:      54vw !important;
+  padding:    @component-padding;
+  position:   fixed;
+  min-width:  10vw !important;
+  box-shadow:    -1em 0.33em 10em 8em rgba(0,0,0,0.15) !important;
+  border-radius: @component-border-radius * 1.5 !important;
 
-    li.selected .character-match {
-      .text(selected);
-    }
-
-    li {
-      padding: @component-padding/2 @component-padding*2;
-
-      &.two-lines {
-        padding: @component-padding/2 @component-padding*2;
-      }
-
-      .status.icon {
-        float: right;
-        margin-left: @component-icon-padding;
-
-        &:before {
-          margin-right: 0;
-        }
-      }
-
-      &.selected {
-        border-radius: 0 !important;
-
-        .status.icon {
-          color: @text-color-selected;
-        }
-      }
-    }
+  ol.list-group {
+    min-height: 58vh !important;
   }
+
+
+  atom-text-editor.editor {
+    .no-borders;
+    .text(display);
+    border-radius: 0 !important
+    border:        none !important;
+    padding:       @component-padding @component-padding @component-padding 1em !important;
+    margin:        0 !important }
 }
 
 atom-panel.modal {

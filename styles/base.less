@@ -16,24 +16,32 @@ pre {
 li.list-item, li.list-item *,
 .list-tree li.list-item,
 .select-list li.list-item,
-.tab, .tab-bar, .tab-bar .tab, .name,
-body, atom-panel, atom-panel > *,
+.name,
+body, atom-panel,
 p, h1, h2, h3, h4, h5,
 table, td, th {
   .text(default);
-  .no-borders()
+  .no-borders();
+  font-size:  1em;
 }
+
+atom-panel > * {
+  border-style: none }
+
+.config-menu {
+  .no-borders }
 
 .config-menu li a {
   .text(default);
-  padding: 1.2em 0em 1.4em 2em !important }
+  padding: @component-padding 0em @component-padding @component-padding * 2 !important }
 
 pre {
+  font-size: 1em;
   background-color: @syntax-background-color !important }
 
 table, td, th {
-  line-height: 1.5em    !important;
-  font-size: @text-size !important }
+  line-height: @component-line-height !important;
+  font-size: @font-size !important }
 
 .tool-bar-spacer {
   opacity: 0 }

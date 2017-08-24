@@ -1,13 +1,4 @@
-/*
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-title      Buttons                                         +
-project    nord-atom-ui                                    +
-repository https://github.com/arcticicestudio/nord-atom-ui +
-author     Arctic Ice Studio                               +
-email      development@arcticicestudio.com                 +
-copyright  Copyright (C) 2016                              +
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-*/
+
 button,
 button.icon,
 .btn-default,
@@ -20,50 +11,21 @@ button.icon,
     border: 1px solid @text-color-selected !important;
   }
 
-  &.btn-xs {
-    font-size: 10px;
-    padding: 0 4px;
-    height: 16px;
-    line-height: 16px;
-  }
+  &.btn-xs { }
+  &.btn-sm { }
+  &.btn-lg { }
 
-  &.btn-sm {
-    font-size: 11px;
-    padding: 0 8px;
-    height: 24px;
-    line-height: 24px;
-  }
-
-  &.btn-lg {
-    font-size: 13px;
-    padding: 0 12px;
-    height: 40px;
-    line-height: 40px;
-  }
-
-  &.btn-error {
-    .button-variant(@text-color-error);
-  }
-
+  &.btn-error { .button-variant(@text-color-error) }
   &.btn-info {
-    .button-variant(@text-color-info);
-  }
-
+    .button-variant(@text-color-info) }
   &.btn-primary {
-    .button-variant(@text-color-info);
-  }
-
+    .button-variant(@text-color-info) }
   &.btn-success {
-    .button-variant(@text-color-success);
-  }
-
+    .button-variant(@text-color-success) }
   &.btn-warning {
-    .button-variant(@text-color-warning);
-  }
-
+    .button-variant(@text-color-warning) }
   &.status-indicator {
-    border-width: 0 !important;
-  }
+    border-width: 0 !important }
 }
 
 .btn-group {

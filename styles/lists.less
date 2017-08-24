@@ -1,107 +1,114 @@
 
-.list-group,
-.list-tree {
-  li .character-match {
-    .text(normal);
-    transition: color @transition-time/2 ease;
-  }
-
-  li:hover .character-match {
-    .text(highlight);
-    transition: color @transition-time/2 ease;
-  }
-
-  li.selected:before {
-    background: @background-color-selected;
-  }
-
-  li.selected .character-match {
-    .text(selected);
-    font-size: @font-size;
-  }
-
-  li.selected .word {
-    color: @text-color-selected !important;
-  }
-
-  li,
-  li.list-item {
-    transition: color @transition-time/2 ease;
-  }
-
-  li:hover,
-  li.list-item:hover {
-    .text(highlight);
-  }
-
-  li:not(.list-nested-item),
-  li.list-nested-item > .list-item {
-    .text(normal);
-  }
-
-  .generate-list-item-text-color(@class) {
-    li:not(.list-nested-item).text-@{class},
-    li.list-nested-item.text-@{class}> .list-item {
-      .text(@class);
-    }
-  }
-  .generate-list-item-text-color(subtle);
-  .generate-list-item-text-color(info);
-  .generate-list-item-text-color(success);
-  .generate-list-item-text-color(warning);
-  .generate-list-item-text-color(error);
-  .generate-list-item-text-color(selected);
-
-  .generate-list-item-status-color(@color, @status) {
-    li:not(.list-nested-item).status-@{status},
-    li.list-nested-item.status-@{status}> .list-item {
-      color: @color;
-    }
-
-    li:not(.list-nested-item).selected.status-@{status},
-    li.list-nested-item.selected.status-@{status}> .list-item {
-      color: @color;
-    }
-  }
-  .generate-list-item-status-color(@text-color-subtle, ignored);
-  .generate-list-item-status-color(@text-color-added, added);
-  .generate-list-item-status-color(@text-color-renamed, renamed);
-  .generate-list-item-status-color(@text-color-modified, modified);
-  .generate-list-item-status-color(@text-color-removed, removed);
-
-  li:not(.list-nested-item).selected,
-  li.list-nested-item.selected > .list-item {
-    .text(selected);
-    font-size: @font-size;
+.li-state (@class, @color) {
+  li.list-item@{class},
+  li.list-nested-item@{class} > .list-item {
+    color: var(--color);
+    .with-selected-variant(@@color);
+    .with-hovered-variant(@@color);
   }
 }
 
-.select-list ol.list-group,
-&.select-list ol.list-group {
+.li-text-color (@state) {
+  @classname: ~".text-@{state}";
+  @varname: ~"text-color-@{state}";
+  .li-state(@classname, @varname) }
+
+.li-status-color (@state) {
+  @classname:      ~".status-@{state}";
+  @varname:        ~"text-color-@{state}";
+  .li-state(@classname, @varname) }
+
+.li-status-subtle (@state) {
+  @classname:      ~".status-@{state}";
+  @varname:        ~"text-color-subtle";
+  .li-state(@classname, @varname) }
+
+
+
+// Regular trees & list groups
+
+.list-group,
+.list-tree {
+
+  li .character-match {
+    transition: @transition-color }
+
+  li.selected .character-match {
+    font-size: @font-size }
+
+  li.selected .word {
+    color: @text-color-selected !important }
+
+  li.selected:before {
+    background: @background-color-selected }
+
+  li {
+    .text(normal);
+    color: var(--color);
+    transition: @transition-color }
+
+  li:not(.list-nested-item),
+  li.list-nested-item > .list-item {
+    color: var(--color);
+    .with-selected-variant(@text-color);
+    .with-hovered-variant(@text-color);
+    .with-active-variant(@text-color);
+    .text(normal) }
+
+  .li-text-color(info);
+  .li-text-color(success);
+  .li-text-color(warning);
+  .li-text-color(error);
+  .li-text-color(subtle);
+  .li-text-color(selected);
+  .li-status-color(added);
+  .li-status-color(renamed);
+  .li-status-color(modified);
+  .li-status-color(removed);
+  .li-status-subtle(ignored);
+
+  li.list-item.selected,
+  li.list-nested-item.selected > .list-item {
+    .text(selected);
+    font-size: inherit }
+}
+
+
+
+// Select lists
+
+ul.list-group,
+ol.list-group,
+.modal.select-list ol.list-group,
+.modal .select-list ol.list-group,
+.select-list ol.list-group {
+
   li pre {
-    margin-bottom: 0;
-  }
+    margin-bottom: 0 }
 
   li.two-lines {
+    .primary-line {
+      margin-bottom: -0.5em;
+      padding-top: 0.5em;
+      .text(menu) }
     .secondary-line {
       .text(subtle);
+      font-size: 0.85em;
+      margin-top: -0.5em;
+      padding-bottom: 0.5em;
     }
-
     &.selected .secondary-line {
       .text(selected);
+      font-size: 0.85em;
     }
   }
 
   li.selected {
     background-color: @background-color-selected;
-
     &:before {
-      display: none;
-    }
-
+      display: none }
     pre {
-      border-color: @text-color-highlight;
-    }
+      border-color: @text-color-highlight }
   }
 
   &.mark-active {
@@ -113,56 +120,99 @@
       left: auto;
       right: auto;
       height: @list-active-icon-size;
-      width: @list-active-icon-size;
-    }
-
-    > li:not(.active):before {
-      margin-right: @component-icon-padding;
-    }
+      width: @list-active-icon-size }
 
     li.active {
-      .octicon(check, @list-active-icon-size);
+      .octicon(check, @list-active-icon-size) }
+
+    li::before {
+      margin-right: @component-icon-padding }
+
+    li.active:before {
+        color: @text-color-success }}
+
+  li .character-match {
+    .text(normal);
+  }
+
+  li.selected .character-match {
+    .text(selected);
+  }
+
+  li {
+      color: var(--color);
+    .with-selected-variant(@text-color);
+    .with-hovered-variant(@text-color);
+    .with-active-variant(@text-color);
+    line-height: @list-item-height !important;
+    padding: @component-padding / 4 @component-padding / 2 !important;
+
+    &.two-lines {
+      padding: @component-padding / 4 @component-padding*2;
+    }
+
+    .status.icon {
+      float: right;
+      margin-left: @component-icon-padding;
 
       &:before {
-        margin-right: @component-icon-padding;
-        color: @text-color-success;
+        margin-right: 0;
+      }
+    }
+
+    &.selected {
+      border-radius: 0 !important;
+
+      .status.icon {
+        color: @text-color-selected;
       }
     }
   }
+  li,
+  span,
+  span.title,
+  span[title] {
+    font-weight: inherit !important;
+    font-family: inherit !important;
+    font-size:   inherit !important;
+
+    &.selected {
+      font-weight: 600 !important;
+      letter-spacing: -0.007em }}
 }
+
+
+
+// Popover lists
 
 .select-list.popover-list {
   .overlay-shadow();
-  background-color: @overlay-background-color;
-  border-radius: @component-border-radius !important;
-  border: 1px solid @overlay-border-color !important;
+  --background-color: @overlay-background-color;
+
+  border:         1px solid @overlay-border-color !important;
+  background:     var(--background-color);
+  border-radius:  @component-border-radius !important;
 
   atom-text-editor {
-    margin-bottom: @component-padding/2;
-  }
+    margin-bottom: @component-padding / 6 }
 
   .list-group li {
-    padding-left: @component-padding/2;
-    transition: color @transition-time/2 ease;
-  }
+    padding-left: @component-padding;
+    transition: color @transition-time ease }
 }
 
-.ui-sortable {
-  li {
-    line-height: 2.5;
-  }
+.ui-sortable li {
+  line-height: @list-item-height }
 
-  li.ui-sortable-placeholder {
-    visibility: visible !important;
-    background-color: darken(@pane-item-background-color, 10%);
-  }
-}
+.ui-sortable li.ui-sortable-placeholder {
+  visibility: visible !important;
+  background: var(--background-color);
+  .dimmed(3) }
 
 li.ui-draggable-dragging,
 li.ui-sortable-helper {
-  line-height: @component-line-height;
-  height: @component-line-height;
+  line-height: @list-item-height;
+  height: @list-item-height;
   list-style: none;
   padding: 0 @component-padding;
-  background: @background-color-highlight;
-}
+  background: @background-color-highlight }
