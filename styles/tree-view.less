@@ -7,6 +7,8 @@
 
   // List items
   .list-item {
+    display: flex;
+    align-items: center;
     height: @list-item-height !important;
 
     span.name {
@@ -15,7 +17,13 @@
 
     span.name,
     .icon::before {
-      vertical-align: top }}
+      top:            0;
+      width:          1.2em;
+      font-size:      1.25em;
+      line-height:    inherit;
+      vertical-align: top;
+      height:         auto }
+  }
 
 
   // Project headers
@@ -118,6 +126,10 @@
   .tree-view-resize-handle {
     width: 8px;
   }
+}
+
+atom-panel.modal ol.list-group, .overlay ol.list-group {
+  min-height: 0 !important
 }
 
 

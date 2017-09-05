@@ -4,20 +4,21 @@ atom-text-editor {
   background-color: var(--background-color) !important;
   font-weight:      @editor-font-weight;
 
-  .gutter {
+  .gutter,
+  .gutter-container {
     text-align: right !important }
 
   .gutter .cursor-line {
     --background-color: @gutter-background-color-selected }
 
-  .gutter .line-numbers {
-    .dimmed(0);
-    background-color: var(--background-color) !important;}
+  .gutter.line-numbers {
+    .dimmed(1);
+    background-color: var(--background-color) !important }
     // --background-color: @gutter-background-color }
 
   .gutter .line-number {
     .dimmed(0);
-    background-color: var(--background-color) !important;}
+    background-color: var(--background-color) !important }
 
   &[with-minimap] atom-overlay {
     margin-left: 0 !important }
@@ -26,18 +27,24 @@ atom-text-editor {
     padding: 0 }
 }
 
+
 atom-text-editor[mini] {
-  transition: all @transition-time ease;
-  padding-left: @component-padding;
+  transition:    all @transition-time ease;
+  padding-left:  @component-padding;
   padding-right: @component-padding;
-  line-height: @input-height - 2px;
-  max-height: @input-height;
-  height: @input-height;
+  line-height:   @input-height - 2px;
+  max-height:    @input-height;
+  height:        @input-height;
 
   border: 1px solid @input-background-color;
   background-color: @base-background-color;
-  border-radius: @component-border-radius;
-  border-radius: 2em !important;
+  border-radius:    @component-border-radius;
+  border-radius:    2em !important;
+  // padding: 1em 2em;
+  box-sizing:       border-box;
+  overflow:         hidden;
+  // height:           auto;
+  max-height:       6em;
 
   .syntax--text,
   .syntax--source {
@@ -45,7 +52,7 @@ atom-text-editor[mini] {
 
   .placeholder-text {
     .text(subtle);
-    height: @input-height;
+    height:      @input-height;
     line-height: @input-height - 2px;
   }
 

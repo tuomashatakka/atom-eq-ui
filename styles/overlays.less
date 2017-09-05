@@ -4,14 +4,22 @@
 atom-panel.modal,
 .overlay {
   .overlay-shadow();
+  .rainbow-decoration();
   .text(normal);
 
   background-color: @overlay-background-color;
   border-radius: @component-border-radius !important;
   border: 1px solid @base-border-color !important;
   padding: @component-padding @component-padding*2;
-  width: 680px;
-  margin-left: -340px;
+  flex-direction: column;
+  display: flex;
+
+  > .select-list,
+  > * {
+    flex-direction: column;
+    display: flex;
+    height:  66vh;
+  }
 
   label,
   p {
@@ -68,9 +76,6 @@ atom-panel.modal,
   box-shadow:    -1em 0.33em 10em 8em rgba(0,0,0,0.15) !important;
   border-radius: @component-border-radius * 1.5 !important;
 
-  ol.list-group {
-    min-height: 58vh !important;
-  }
 
 
   atom-text-editor.editor {
@@ -81,6 +86,44 @@ atom-panel.modal,
     padding:       @component-padding @component-padding @component-padding 1em !important;
     margin:        0 !important }
 }
+
+
+
+// Modals
+
+atom-panel.modal:not(.from-top) {
+  left: auto !important }
+
+atom-panel.modal.from-top,
+atom-panel.modal {
+  overflow:      hidden;
+  padding:       1.4rem 3.5rem;
+  min-width:     15vw !important;
+  border-width:  0 !important;
+  border-radius: 3px !important;
+
+  ol.list-group {
+    max-height: none !important }
+
+  .select-list ol.list-group,
+  .select-list atom-text-editor {
+    margin-left:  -3rem !important;
+    margin-right: -3rem !important }
+
+  .select-list ol.list-group li {
+    // text-transform: uppercase;
+    letter-spacing: -0.04em;
+    font-size:      0.8em;
+    transition: .35s background-color, .35s color;
+    padding:        @component-padding / 3 @component-padding / 1.5 !important;
+
+    &.selected,
+    &:hover {
+      transition-duration: 500ms;
+    }
+  }
+}
+
 
 atom-panel.modal {
   & > div > atom-text-editor[mini]:before {

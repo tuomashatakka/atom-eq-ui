@@ -2,7 +2,6 @@
 @panel-heading-text-size: 1.5em;
 @handle-size: 7px;
 
-
 // Panes
 
 atom-panel-container {
@@ -123,7 +122,15 @@ atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
 
 .atom-dock-mask {
   background: var(--background-color);
-  overflow:   initial }
+  overflow:   initial;
+
+  .bottom & {
+    overflow: hidden }
+
+  .left &,
+  .right & {
+    overflow: initial }
+}
 
 
 // Toggle arrows
@@ -134,22 +141,27 @@ atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
   justify-content: center;
   &.left,
   &.right {
-    width:  @toggle-area-outset;
-    height: @toggle-area-size }
+    width:  @dock-toggle-size;
+    height: @dock-toggle-width }
 
   &.bottom,
   &.top {
-    height: @toggle-area-outset;
-    width:  @toggle-area-size }
+    height: @dock-toggle-size;
+    width:  @dock-toggle-width }
+
+  &:not(.atom-dock-toggle-button-visible) .atom-dock-toggle-button-inner {
+    z-index: 600;
+    &.left  {  transform: translate(-100%, 0) }
+    &.right {  transform: translate(100%, 0) }
+    &.bottom { transform: translate(0, 100%) }}
 
   .atom-dock-toggle-button-inner {
-    display: block;
-    border: none;
-    border-radius: 0;
-    height: inherit;
-    width: inherit;
+    width:            inherit;
+    height:           inherit;
+    border:           none;
+    display:          block;
+    border-radius:    0;
     background-color: var(--background-color);
-
 
     .icon[class*='chevron'] {
       position:  absolute;
@@ -171,11 +183,9 @@ atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
   // Fix the gutter caused by handles
   &.left { margin-right: -@handle-size / 2 }
   &.right { margin-left: -@handle-size / 2 }
-  &.bottom { margin-top: -@handle-size / 2 }}
-
-.atom-dock-toggle-button:not(.atom-dock-toggle-button-visible) .atom-dock-toggle-button-inner {
-  z-index: 600;
-
-  &.left  { transform: translate(-100%, 0) }
-  &.right { transform: translate(100%, 0) }
-  &.bottom { transform: translate(0, 100%) }}
+  &.bottom { margin-top: -@handle-size / 2 }
+  .bottom &.bottom {
+    background: transparent;
+    position:   absolute;
+    margin:     0;
+    width:      100% }}

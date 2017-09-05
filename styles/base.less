@@ -8,25 +8,23 @@ atom-panel {
 body {
   font-size: inherit }
 
-body,
-html,
-pre {
+body, html, pre {
   font-size: @text-size }
 
-li.list-item, li.list-item *,
+.name,
 .list-tree li.list-item,
 .select-list li.list-item,
-.name,
+li.list-item, li.list-item *,
 body, atom-panel,
 p, h1, h2, h3, h4, h5,
 table, td, th {
   .text(default);
   .no-borders();
-  font-size:  1em;
-}
+  font-size:  1em }
 
 atom-panel > * {
   border-style: none }
+
 
 .config-menu {
   .no-borders }
@@ -35,9 +33,6 @@ atom-panel > * {
   .text(default);
   padding: @component-padding 0em @component-padding @component-padding * 2 !important }
 
-pre {
-  font-size: 1em;
-  background-color: @syntax-background-color !important }
 
 table, td, th {
   line-height: @component-line-height !important;

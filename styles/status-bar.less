@@ -1,25 +1,31 @@
 
 .status-bar-item () {
-  margin: 0 @component-padding / 4;
-  font-size: 0.93em;
-  flex-grow: 0;
-  flex-shrink: 1;
-  text-align: center;
-  display: table-cell;
+  flex-shrink:    1;
+  flex-grow:      0;
+  font-size:      0.93em;
+  margin:         0 @component-padding / 4;
+  display:        table-cell;
+  text-align:     center;
   vertical-align: middle;
+
+  flex:       1 1 1;
+  width:      auto;
+  max-width:  45%;
+  margin:     0 @component-padding;
 }
 
-status-bar {
-  @margin: @component-padding * 0.5;
 
+
+status-bar {
   .text(menu);
   .highlighted(1%);
+  @margin: @component-padding * 0.5;
 
+  padding:      @margin 0;
+  box-sizing:   content-box;
   background:   var(--background-color) !important;
   line-height:  @component-line-height;
   height:       @component-line-height + @component-padding;
-  padding:      @margin 0;
-  box-sizing:   content-box;
 
   .flexbox-repaint-hack {
     padding: 0 @margin / 2 }
@@ -38,4 +44,9 @@ status-bar {
 
      > * { .status-bar-item }
   }
+
+  .status-bar-left,
+  .status-bar-right {
+    display: flex;
+    align-items: center }
 }

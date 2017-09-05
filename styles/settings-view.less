@@ -1,13 +1,4 @@
-/*
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-title      Settings View                                   +
-project    nord-atom-ui                                    +
-repository https://github.com/arcticicestudio/nord-atom-ui +
-author     Arctic Ice Studio                               +
-email      development@arcticicestudio.com                 +
-copyright  Copyright (C) 2016                              +
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-*/
+
 .settings-view {
   font-size: @font-size;
   .text(normal);
@@ -122,15 +113,15 @@ copyright  Copyright (C) 2016                              +
     background: transparent;
     border-width: 1px solid @base-border-color;
     padding: @component-padding;
-    
+
     &:hover {
       background: transparent;
     }
-    
+
     .card-name {
       .text(highlight);
     }
-    
+
     .meta-controls {
       .install-button, .uninstall-button {
         &.is-installing,
@@ -180,4 +171,20 @@ copyright  Copyright (C) 2016                              +
       .text(heading);
     }
   }
+}
+
+
+
+
+// Settings view
+
+.settings-view .section:first-child,
+.settings-view .section:last-child,
+.settings-view .section,
+.section {
+  padding: 2em;
+}
+
+.settings-view .select-container {
+  align-items: center;
 }

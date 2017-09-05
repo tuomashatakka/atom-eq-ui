@@ -146,6 +146,7 @@
 @component-padding:       1.5em;
 @component-line-height:   2em;
 @menu-letter-spacing:     3px;
+@bracket-matcher-x-offset:3px;
 
 @component-icon-padding:  0.35em;
 @component-icon-size:     @icon-size;
@@ -167,9 +168,17 @@
 @input-font-weight:       200;
 @editor-font-weight:      500;
 
-@panel-nudge-radius:      2em;
-@toggle-area-size:        20em;
-@toggle-area-outset:      0em;
+@panel-nudge-radius:      0em;
+@dock-toggle-width:       20em;
+@dock-toggle-size:        3em;
 @shadow-spread:           3em;
 @shadow-offset:           0.2em;
 @shadow-opacity:          0.2;
+@toolbar-gutter:          0.3em;
+
+
+// FIXME
+@rainbow-gradient:        linear-gradient(100deg, #3e91f9, #a9427b, #4c566a);
+@text-color:              #D8DEE9;
+@bracket-matcher-color:   fade(@text-color, 80%);
+@scrollbar-track-color:   darken(@base-background-color, 5%);

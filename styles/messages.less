@@ -2,7 +2,9 @@
 .background-message .message,
 .background-message li {
   .text(subtle);
-  font-size: 24px;
+  line-height: 1.15em;
+  font-weight: 100;
+  font-size:   4rem;
 
   .keystroke {
     .text(normal);
@@ -12,5 +14,28 @@
     border: 1px solid @tooltip-key-text-color;
     border-radius: @component-border-radius/2;
     margin-left: @component-padding/2;
+  }
+}
+
+
+// Alert boxes in settings
+
+.alert {
+  padding:       1em 0.5em 1em 1.5em;
+  border-radius: 2px;
+  border-width:  1px;
+  border-style:  solid;
+
+  &.alert-info {
+    background-color: mix(@background-color-info, @app-background-color, 5%);
+    border-color:     mix(@background-color-info, @app-background-color, 50%);
+    color:            @text-color-info;
+  }
+
+  &.error-message,
+  &.alert-danger {
+    background-color: mix(@background-color-error, @app-background-color, 5%);
+    border-color:     mix(@background-color-error, @app-background-color, 50%);
+    color:            @text-color-error;
   }
 }

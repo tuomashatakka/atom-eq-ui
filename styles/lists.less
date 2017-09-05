@@ -40,7 +40,9 @@
     color: @text-color-selected !important }
 
   li.selected:before {
-    background: @background-color-selected }
+    background: @background-color-selected;
+    background-color: fade(@text-color, 75%);
+    z-index: 0 }
 
   li {
     .text(normal);

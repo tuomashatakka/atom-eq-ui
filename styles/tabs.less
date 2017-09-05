@@ -42,17 +42,17 @@
   .status-colors;
   .interactions(darken(@tab-bar-background-color, 4%));
 
-  width:        100%;
-  display:      table-cell;
-  position:     relative;
   text-align:   center;
-  transition:   @transition-color;
-  line-height:  @tab-height - @component-padding;
-  padding:      @component-padding / 2;
+  position:     relative;
+  display:      table-cell;
   height:       @tab-height;
+  line-height:  @tab-height;
+  transition:   @transition-color;
+  padding:      0 @component-padding;
+  width:        100%;
 
   .title {
-    border-width: 0 0 1px;
+    border-width: 0 0 3px;
     border-style: solid;
     border-color: inherit !important }
 
@@ -91,30 +91,30 @@
   align-items:     center;
   box-sizing:      border-box;
   display:         flex;
-  border-radius: 50%;
+  border-radius:   50%;
 
   &:hover::before {
-    transition-delay: 0 !important;
+    transition-delay:    0 !important;
     transition-duration: 0ms !important }
 
   &::before {
-    display: block;
-    text-align: center;
     vertical-align: middle;
-    margin: 0;
-    color: inherit !important }
+    text-align:     center;
+    display:        block;
+    margin:         0;
+    color:          inherit !important }
 
 
   // Default
   .tab-bar .tab & {
     transition: transform @transition-time ease, color @transition-time ease, background @transition-time ease;
-    transform: scale(1) translate(-50%, -50%);
-    opacity: 0;
-    top:      50%;
-    right:    0.2em;
-    cursor: pointer;
-    height: 16px;
-    width: 16px;
+    transform:  scale(1) translate(-50%, -50%);
+    opacity:    0;
+    top:        50%;
+    right:      0.2em;
+    cursor:     pointer;
+    height:     16px;
+    width:      16px;
 
     border: 0px solid rgba(200,200,200,0.1);
     border-color: var(--color);
