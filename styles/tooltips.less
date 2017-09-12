@@ -1,6 +1,11 @@
 
 .tooltip {
+  .text(menu);
+  --background-color: @tooltip-background-color;
   white-space: nowrap;
+
+  &.in {
+    opacity: 1 }
 
   .keystroke {
     .text(normal);
@@ -9,54 +14,28 @@
     font-size: 90%;
     border: 1px solid @tooltip-key-text-color;
     border-radius: @component-border-radius/2;
-    padding: 2px 4px;
-  }
-
-  &.in {
-    opacity: 1;
-  }
+    padding: 2px 4px }
 
   .tooltip-inner {
-    .text(normal);
     .overlay-shadow();
 
-    line-height: @component-line-height;
-    border-radius: @component-border-radius;
-    background-color: @tooltip-background-color;
-    color: @tooltip-text-color !important;
-    white-space: nowrap;
-    max-width: none;
-  }
+    color:            @tooltip-text-color !important;
+    padding:          @component-padding / 2 @component-padding;
+    line-height:      @component-line-height;
+    border-radius:    @component-border-radius;
+    background-color: var(--background-color);
+    white-space:      nowrap;
+    max-width:        none;
+    font-size:        0.8em }
+}
 
-  &.top .tooltip-arrow {
-    border-top-color: @tooltip-background-color;
-  }
-
-  &.top-left .tooltip-arrow {
-    border-top-color: @tooltip-background-color;
-  }
-
-  &.top-right .tooltip-arrow {
-    border-top-color: @tooltip-background-color;
-  }
-
-  &.right .tooltip-arrow {
-    border-right-color: @tooltip-background-color;
-  }
-
-  &.left .tooltip-arrow {
-    border-left-color: @tooltip-background-color;
-  }
-
-  &.bottom .tooltip-arrow {
-    border-bottom-color: @tooltip-background-color;
-  }
-
-  &.bottom-left .tooltip-arrow {
-    border-bottom-color: @tooltip-background-color;
-  }
-
-  &.bottom-right .tooltip-arrow {
-    border-bottom-color: @tooltip-background-color;
-  }
+.tooltip-arrow {
+  .tooltip[class*=top] & {
+    border-top-color: var(--background-color) }
+  .tooltip[class*=bottom] & {
+    border-bottom-color: var(--background-color) }
+  .tooltip.right & {
+    border-right-color: var(--background-color) }
+  .tooltip.left & {
+    border-left-color: var(--background-color) }
 }

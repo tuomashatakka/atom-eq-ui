@@ -8,11 +8,20 @@ atom-panel.modal,
   .text(normal);
 
   background-color: @overlay-background-color;
-  border-radius: @component-border-radius !important;
-  border: 1px solid @base-border-color !important;
-  padding: @component-padding @component-padding*2;
-  flex-direction: column;
-  display: flex;
+  border-radius:    @component-border-radius !important;
+  border:           1px solid @base-border-color !important;
+  padding:          @component-padding @component-padding*2;
+  display:          flex;
+  flex-direction:   column;
+
+  left:       auto !important;
+  right:      4vw !important;
+  width:      54vw !important;
+  padding:    @component-padding;
+  position:   fixed;
+  min-width:  10vw !important;
+  box-shadow:    -1em 0.33em 10em 8em rgba(0,0,0,0.15) !important;
+  border-radius: @component-border-radius * 1.5 !important;
 
   > .select-list,
   > * {
@@ -40,15 +49,6 @@ atom-panel.modal,
   &, &.from-top {
     top: @offset-top }
 
-  left:       auto !important;
-  right:      4vw !important;
-  width:      54vw !important;
-  padding:    @component-padding;
-  position:   fixed;
-  min-width:  10vw !important;
-  box-shadow:    -1em 0.33em 10em 8em rgba(0,0,0,0.15) !important;
-  border-radius: @component-border-radius * 1.5 !important;
-
 
   atom-text-editor[mini],
   atom-text-editor.mini {
@@ -62,7 +62,7 @@ atom-panel.modal,
     max-height:    none;
     min-height:    1.5em;
     height:        1.5em;
-    margin:        0 -@component-padding*2;
+    margin:        0 @component-padding;
     border:        none !important;
     padding:       0 0 0 1.5em !important;
     border-radius: 0 !important;

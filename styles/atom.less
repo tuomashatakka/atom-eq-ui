@@ -3,8 +3,7 @@
 body,
 atom-workspace,
 atom-panel {
-  background-color: @base-background-color !important;
-}
+  background-color: @base-background-color !important }
 
 .project-find,
 .find-and-replace {
@@ -31,20 +30,13 @@ atom-panel {
       text-transform: uppercase;
     }
   }
-}
 
-// Badges and labels
-kbd {
-  .text(normal);
-  --color: @tooltip-key-text-color;
-  --background-color: @tooltip-key-background-color;
-
-  color:          var(--color);
-  background:     var(--background-color);
-  font-size:      0.85em;
-  border:         1px solid @tooltip-key-text-color;
-  border-radius:  @component-border-radius / 1.5;
-  margin-left:    @component-padding / 2;
+  .btn-group {
+    padding: 0 @component-padding / 2 0 0;
+  }
+  .btn-group + .btn-group {
+    margin: 0;
+  }
 }
 
 

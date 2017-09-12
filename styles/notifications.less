@@ -68,20 +68,39 @@ atom-notifications {
     * { background: transparent !important }}
 
   atom-notification::before {
+    background: transparent;
     position: absolute;
-    display:  flex !important;
-    width:    auto !important;
+    color:    inherit !important;
+    display:  flex    !important;
+    width:    auto    !important;
     top:      0;
     left:     0;
     right:    0;
     bottom:   0;
-    z-index: -1;
-    padding:  1.2em       !important;
     margin:   0           !important;
+    padding:  0.8em       !important;
+    z-index: -1;
     text-align:    left   !important;
     align-items:   center !important;
     border-radius: 1px    !important }
 
   atom-notification.has-close:first-child .message {
     padding-right: 2em }
+
+  atom-notification.fatal,
+  atom-notification.error {
+    color: @text-color-error;
+    background-color: @background-color-error }
+
+  atom-notification.warning {
+    color: @text-color-warning;
+    background-color: @background-color-warning }
+
+  atom-notification.success {
+    color: @text-color-success;
+    background-color: @background-color-success }
+
+  atom-notification.info {
+    color: @text-color-info;
+    background-color: @background-color-info }
 }
