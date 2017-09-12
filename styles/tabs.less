@@ -1,32 +1,5 @@
 @color-modified: @text-color-warning;
 
-.tab-bar .tab {
-  .status-added,
-  .status-ignored,
-  .status-modified {
-    transition: color @transition-time ease, background @transition-time ease;
-  }
-
-  .status-modified {
-    color: @text-color-modified;
-  }
-
-  .status-added {
-    color: @text-color-added;
-  }
-
-  &:hover {
-    color: @text-color-highlight;
-    background: @tab-background-color-hover;
-  }
-}
-
-.tab-bar .tab.active,
-.tab-bar .tab:hover.active {
-  color: @text-color-selected;
-  background-color: @tab-background-color-active;
-  width: 100%;
-}
 
 
 .tab-bar {
@@ -42,6 +15,7 @@
   .status-colors;
   .interactions(darken(@tab-bar-background-color, 4%));
 
+  background:   linear-gradient(transparent 40%, fade(black, 12%) 100%);
   text-align:   center;
   position:     relative;
   display:      table-cell;
@@ -51,8 +25,12 @@
   padding:      0 @component-padding;
   width:        100%;
 
+  &.active {
+    background-image: none;
+    width:      100% }
+
   .title {
-    border-width: 0 0 3px;
+    border-width: 0 0 1px;
     border-style: solid;
     border-color: inherit !important }
 
@@ -64,38 +42,26 @@
     margin:  0 }
 
   .icon::before {
-    margin:       0 @component-padding / 4 0 @component-padding / 8;
     font-size:    @tab-icon-size;
+    margin:       0 @component-padding / 4 0 @component-padding / 8;
     width:        1.2em;
     height:       1.2em;
     line-height:  1.2em }
 
   .bottom & {
-    height:    @tab-bottom-height;
-    max-height: @tab-bottom-height;
-    line-height: @tab-bottom-height;
-  }
+    height:       @tab-bottom-height;
+    max-height:   @tab-bottom-height;
+    line-height:  @tab-bottom-height }
 }
 
 .tab-bar .placeholder {
   display: none }
-
 
 .close-icon {
   --color:          @text-color-subtle;
   --color-hover:    @text-color-warning;
   --color-modified: @text-color-info;
   --color-modified-hover: @text-color-warning;
-
-  justify-content: center;
-  align-items:     center;
-  box-sizing:      border-box;
-  display:         flex;
-  border-radius:   50%;
-
-  &:hover::before {
-    transition-delay:    0 !important;
-    transition-duration: 0ms !important }
 
   &::before {
     vertical-align: middle;
@@ -104,17 +70,26 @@
     margin:         0;
     color:          inherit !important }
 
+  &:hover::before {
+    transition-delay:    0 !important;
+    transition-duration: 500ms !important }
 
   // Default
   .tab-bar .tab & {
+
+    display:         flex;
+    box-sizing:      border-box;
+    align-items:     center;
+    border-radius:   50%;
+    justify-content: center;
     transition: transform @transition-time ease, color @transition-time ease, background @transition-time ease;
     transform:  scale(1) translate(-50%, -50%);
     opacity:    0;
-    top:        50%;
-    right:      0.2em;
     cursor:     pointer;
     height:     16px;
     width:      16px;
+    right:      0.2em;
+    top:        50%;
 
     border: 0px solid rgba(200,200,200,0.1);
     border-color: var(--color);
@@ -122,16 +97,16 @@
 
   // Not modified, hover (close)
   .tab-bar .tab &:hover {
-    transform: scale(1) translate(-50%, -50%);
+    transform:    scale(1) translate(-50%, -50%);
     border-color: var(--color-hover);
-    background: @base-background-color;
-    color: var(--color-hover) }
+    background:   @base-background-color;
+    color:        var(--color-hover) }
 
   // Modified state (modified marker)
   .tab-bar .tab.modified:not(:hover) & {
-    border-width: 1px;
+    border-width: 2px;
     border-color: var(--color-modified);
-    color: var(--color-modified) }
+    color:        var(--color-modified) }
 
   // Modified, hover (close)
   .tab-bar .tab.modified &:hover {
@@ -140,7 +115,7 @@
 
   // Tab hover (display)
   .tab-bar .tab:hover & {
-    opacity: 1;
-    transform: scale(1) translate(-50%, -50%);
+    opacity:    1;
+    transform:  scale(1) translate(-50%, -50%);
     background: @base-background-color }
 }

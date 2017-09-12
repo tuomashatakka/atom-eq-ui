@@ -26,33 +26,6 @@ atom-panel.modal,
     .text(normal);
     font-weight: 200 }
 
-  atom-text-editor[mini],
-  atom-text-editor.mini {
-    .text(heading);
-    .syntax--text {
-      color: @text-color-highlight;
-    }
-    font-size: 24px;
-    line-height: 32px;
-    height: auto;
-    max-height: none;
-    background-color: transparent;
-    margin: 0 -@component-padding*2;
-    padding: 0 @component-padding*2 @component-padding @component-padding*4;
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid @base-border-color;
-
-    &.is-focused:hover,
-    &:hover {
-      border-top: 0 !important;
-      border-left: 0 !important;
-      border-right: 0 !important;
-      border-bottom: 1px solid @base-border-color !important;
-      background-color: transparent !important;
-    }
-  }
-
   &.from-top {
     top: 20vh }
 
@@ -77,14 +50,32 @@ atom-panel.modal,
   border-radius: @component-border-radius * 1.5 !important;
 
 
-
-  atom-text-editor.editor {
-    .no-borders;
+  atom-text-editor[mini],
+  atom-text-editor.mini {
     .text(display);
-    border-radius: 0 !important
+    .no-borders;
+
+    .syntax--text {
+      color: @text-color-highlight }
+
+    background-color: transparent;
+    max-height:    none;
+    min-height:    1.5em;
+    height:        1.5em;
+    margin:        0 -@component-padding*2;
     border:        none !important;
-    padding:       @component-padding @component-padding @component-padding 1em !important;
-    margin:        0 !important }
+    padding:       0 0 0 1em !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid @base-border-color;
+
+    &.is-focused:hover,
+    &:hover {
+      border-top:       0 !important;
+      border-left:      0 !important;
+      border-right:     0 !important;
+      border-bottom:    1px solid @base-border-color !important;
+      background-color: transparent !important }
+  }
 }
 
 
@@ -96,44 +87,44 @@ atom-panel.modal:not(.from-top) {
 
 atom-panel.modal.from-top,
 atom-panel.modal {
-  overflow:      hidden;
-  padding:       1.4rem 3.5rem;
-  min-width:     15vw !important;
-  border-width:  0 !important;
-  border-radius: 3px !important;
+  overflow:       hidden;
+  padding:        1.4rem 3.5rem;
+  min-width:      15vw !important;
+  border-width:   0 !important;
+  border-radius:  3px !important;
 
   ol.list-group {
-    max-height: none !important }
+    max-height:   none !important }
 
   .select-list ol.list-group,
   .select-list atom-text-editor {
-    margin-left:  -3rem !important;
-    margin-right: -3rem !important }
+    margin-left:  0 !important;
+    margin-right: 0 !important }
 
   .select-list ol.list-group li {
     // text-transform: uppercase;
+    transition:     .35s background-color, .35s color;
     letter-spacing: -0.04em;
     font-size:      0.8em;
-    transition: .35s background-color, .35s color;
     padding:        @component-padding / 3 @component-padding / 1.5 !important;
 
     &.selected,
     &:hover {
-      transition-duration: 500ms;
-    }
+      transition-duration: 500ms }
   }
 }
 
 
 atom-panel.modal {
-  & > div > atom-text-editor[mini]:before {
-    color: @text-color-subtle;
-    font-family: "Octicons Regular";
-    padding-right: @component-padding;
+
+  & > div > atom-text-editor[mini]::before {
     -webkit-font-smoothing: antialiased;
-    content: "\f011";
-    margin-left: -@component-padding*2;
-  }
+    content:        "\f011";
+    font-family:    "Octicons Regular";
+    padding:        0 0.3em 0 0;
+    color:          @text-color-subtle;
+    margin-left:   -1em;
+    font-size:      1em }
 
   & > .command-palette > atom-text-editor[mini]:before {
     content: "\f0c8";

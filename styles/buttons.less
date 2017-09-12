@@ -5,15 +5,15 @@ button.icon,
 .btn {
   .button(@button-border-color);
 
+  height:        auto;
+  padding:       0em 0.8em;
+  line-height:   @component-line-height * 1.5;
+  border-radius: 2em !important;
+
   &:focus,
   &:active:focus {
     outline: 0;
-    border: 1px solid @text-color-selected !important;
-  }
-
-  &.btn-xs { }
-  &.btn-sm { }
-  &.btn-lg { }
+    border: 1px solid @text-color-selected !important }
 
   &.btn-error { .button-variant(@text-color-error) }
   &.btn-info {
@@ -29,73 +29,73 @@ button.icon,
 }
 
 .btn-group {
-  & > .btn:first-child:not(:last-child) {
-    border-top-right-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-  }
-  & > .btn:last-child:not(:first-child) {
-    border-top-left-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-  }
-}
-
-.btn {
-  border-radius: 2em !important }
-
-.btn-group .btn:not(:last-child):not(:first-child) {
-  border-radius: 0 !important }
-
-
-// NEWS flas
-
-
-.btn-group,
-button.btn {
-  padding: 0em 0.8em;
-  height: auto;
+  height:      auto;
+  padding:     0em 0.8em;
   line-height: @component-line-height * 1.5;
+
+  .btn:first-child:not(:last-child) {
+    border-top-right-radius:    0 !important;
+    border-bottom-right-radius: 0 !important }
+
+  .btn:last-child:not(:first-child) {
+    border-top-left-radius:     0 !important;
+    border-bottom-left-radius:  0 !important }
+
+  .btn:not(:last-child):not(:first-child) {
+    border-radius:              0 !important }
+
+  > .btn:not(:last-child) {
+    &[style*='display: none'] + .btn,
+    &[style*='display:none']  + .btn {
+      border-top-left-radius:    2em !important;
+      border-bottom-left-radius: 2em !important }
+  }
+
+  > .btn {
+    height: inherit }
 
   &:hover {
     transition-duration: 0.1s }
 }
 
-.btn-group > .btn {
-  height: inherit;
-}
 
-.btn-group-sm > .btn,
-.btn-group-xs > .btn {
-  line-height: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-
-}
-button.btn.btn-sm,
-button.btn.btn-xs {
-  padding: 0.2em 0.8em;
-  height: auto;
-  text-transform: uppercase;
-}
-.btn-group-lg > .btn,
-button.btn.btn-lg {
-  font-size: 1.2em;
-  height: auto;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.25em;
-}
+// Toolbars
 
 .btn-toolbar {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 0 -@toolbar-gutter 0 0;
+  margin:     0 -@toolbar-gutter 0 0;
+  display:    flex;
+  flex-flow:  row wrap;
 
   > div.btn-group,
   > button.btn,
   > a.btn,
   > * {
-    margin: 0 @toolbar-gutter @toolbar-gutter 0;
+    margin:   0 @toolbar-gutter @toolbar-gutter 0;
     padding:  0;
-    display: flex;
-  }
+    display:  flex }
+}
+
+
+// Size variants
+
+.btn {
+  &.btn-xs,
+  &.btn-sm {
+    height:         auto;
+    padding:        0.2em 0.8em;
+    text-transform: uppercase }
+
+  .btn-group-sm &,
+  .btn-group-xs & {
+    line-height:    inherit;
+    padding-top:    0;
+    padding-bottom: 0 }
+
+  &.btn-lg,
+  .btn-group-lg > & {
+    height:         auto;
+    font-size:      1.2em;
+    font-weight:    300;
+    letter-spacing: 0.25em;
+    text-transform: uppercase }
 }
