@@ -82,19 +82,16 @@
     height:         1em;
     width:          1em;
     top:            initial;
-    vertical-align: middle;
-  }
+    vertical-align: middle }
 }
 
 .tree-view-resizer {
   .tree-view-resize-handle {
-    width: 8px;
-  }
+    width: 8px }
 }
 
 atom-panel.modal ol.list-group, .overlay ol.list-group {
-  min-height: 0 !important
-}
+  min-height: 0 !important }
 
 
 
@@ -104,15 +101,19 @@ atom-panel.modal ol.list-group, .overlay ol.list-group {
 
 .list-tree.has-collapsable-children .list-nested-item {
 
+  &.collapsed > .list-item::before,
   > .list-item::before {
     content:          "\f078";
-    top:              0;
-    left:             0;
-    margin:           0;
-    height:           1em !important;
-    line-height:      1em !important;
-    width:            1em !important;
+    top:              0 !important;
+    left:             0 !important;
+    right:            0 !important;
+    bottom:           0 !important;
+    margin:           0 !important;
+    height:           1.4em !important;
+    line-height:      1.4em !important;
+    width:            1.4em !important;
     transform:        rotate(90deg);
+    display:          block;
     text-align:       center;
     vertical-align:   middle;
     transform-origin: center;
@@ -120,17 +121,49 @@ atom-panel.modal ol.list-group, .overlay ol.list-group {
       @transition-time transform,
       @transition-time color }
 
+
   // Animated caret rotation
-  &.collapsed > .list-item::before {
-    content:   "\f078";
-    top:       0;
-    left:      0;
-    margin:    0;
-    transform: rotate(0deg) }
 
   > .list-item:hover::before {
-    transform: rotate(80deg) }
+    transform: rotate(90deg) }
+
+  &.collapsed > .list-item::before {
+    content:   "\f078";
+    transform: rotate(0deg) }
 
   &.collapsed > .list-item:hover::before {
-    transform: rotate(10deg) }
+    transform: rotate(0deg) }
+
+}
+
+
+
+.tree-view, .tree-view .list-tree.full-menu, .tree-view .project-root {
+  margin: 0;
+  padding: 0;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.tree-view .list-item.project-root-header {
+  flex: 0 0;
+  height: @tab-height;
+}
+
+.tree-view .tree-view-root .list-tree {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.list-tree.has-collapsable-children .list-nested-item > .list-item.project-root-header::before {
+
+  display: block;
+  z-index: 100;
+  width: 2em !important;
+  height: 2em !important;
+  text-align: center !important;
+  line-height: 2em !important;
+  font-size: 1em !important;
 }

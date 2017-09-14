@@ -39,9 +39,24 @@
   li.selected .word {
     color: @text-color-selected !important }
 
-  li.selected:before {
+  li::before {
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2em;
+    transition: .25s background-color }
+
+  li:hover::before {
+    transition-duration: .1s;
+    background: darken(@background-color-selected, 2%) }
+
+  li.selected::before {
     background: @background-color-selected;
-    background-color: fade(@text-color, 75%);
+    z-index: 0 }
+
+  li.selected:hover::before {
+    background: lighten(@background-color-selected, 5%);
     z-index: 0 }
 
   li {
