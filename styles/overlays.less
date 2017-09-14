@@ -87,13 +87,14 @@ atom-panel.modal:not(.from-top) {
 
 atom-panel.modal.from-top,
 atom-panel.modal {
-  overflow:       hidden;
+  overflow:       initial;
   padding:        @component-padding 0;
   min-width:      15vw !important;
   border-width:   0 !important;
   border-radius:  3px !important;
 
   ol.list-group {
+    overflow: auto;
     max-height:   none !important }
 
   .select-list ol.list-group,
@@ -125,28 +126,17 @@ atom-panel.modal {
     color:          @text-color-subtle;
     margin-left:   -1em;
     font-size:      1em }
+}
 
-  & > .command-palette > atom-text-editor[mini]:before {
-    content: "\f0c8";
-  }
-
-  & > .encoding-selector > atom-text-editor[mini]:before {
-    content: "\f094";
-  }
-
-  & > .grammar-selector > atom-text-editor[mini]:before {
-    content: "\f010";
-  }
-
-  & > .symbols-view > atom-text-editor[mini]:before {
-    content: "\f0c0";
-  }
-
-  & > .fuzzy-finder > atom-text-editor[mini]:before {
-    content: "\f02e";
-  }
-
-  & > .diff-list-view > atom-text-editor[mini]:before {
-    content: "\f0d6";
+.overlay-icon (@content) {
+  atom-panel.modal > & > atom-text-editor[mini]::before {
+    content: @content;
   }
 }
+
+.command-palette {   .overlay-icon("\f0c8") }
+.fuzzy-finder {      .overlay-icon("\f02e") }
+.symbols-view {      .overlay-icon("\f0c0") }
+.diff-list-view {    .overlay-icon("\f0d6") }
+.grammar-selector {  .overlay-icon("\f010") }
+.encoding-selector { .overlay-icon("\f094") }

@@ -39,12 +39,15 @@
   li.selected .word {
     color: @text-color-selected !important }
 
+  // Backdrop for the list items
   li::before {
     z-index: -1;
     position: absolute;
+    top: 0;
     left: 0;
     right: 0;
-    height: 2em;
+    bottom: 0;
+    height: auto;
     transition: .25s background-color }
 
   li:hover::before {
@@ -53,6 +56,7 @@
 
   li.selected::before {
     background: @background-color-selected;
+    left: -1em;
     z-index: 0 }
 
   li.selected:hover::before {
@@ -61,12 +65,17 @@
 
   li {
     .text(normal);
+    position: relative;
     color: var(--color);
     transition: @transition-color }
+
+  li.list-item {
+    display: block }
 
   li:not(.list-nested-item),
   li.list-nested-item > .list-item {
     color: var(--color);
+    min-height: @list-item-height !important;
     .with-selected-variant(@text-color);
     .with-hovered-variant(@text-color);
     .with-active-variant(@text-color);
@@ -100,91 +109,51 @@ ol.list-group,
 .modal .select-list ol.list-group,
 .select-list ol.list-group {
 
-  li pre {
-    margin-bottom: 0 }
+  li {
+    .with-selected-variant(@text-color);
+    .with-hovered-variant(@text-color);
+    .with-active-variant(@text-color);
+    color:       var(--color);
+    padding:     @component-padding / 4 @component-padding !important;
+    line-height: @list-item-height !important }
 
   li.two-lines {
     .primary-line {
       margin-bottom: -0.5em;
       padding-top: 0.5em;
-      .text(menu) }
+      .text(label) }
+
     .secondary-line {
       .text(subtle);
-      font-size: 0.85em;
-      margin-top: -0.5em;
-      padding-bottom: 0.5em;
-    }
+      font-size:      0.82em !important;
+      margin-top:    -0.5em;
+      padding-bottom: 0.5em }
+
     &.selected .secondary-line {
-      .text(selected);
-      font-size: 0.85em;
-    }
+      .text(selected) }
   }
 
   li.selected {
-    background-color: @background-color-selected;
-    &:before {
-      display: none }
-    pre {
-      border-color: @text-color-highlight }
-  }
-
-  &.mark-active {
-    li:before {
-      content: '';
-      background-color: transparent;
-      position: static;
-      display: inline-block;
-      left: auto;
-      right: auto;
-      height: @list-active-icon-size;
-      width: @list-active-icon-size }
-
-    li.active {
-      .octicon(check, @list-active-icon-size) }
-
-    li::before {
-      margin-right: @component-icon-padding }
-
-    li.active:before {
-        color: @text-color-success }}
+    border-radius:    0 !important;
+    background-color: @background-color-selected }
 
   li .character-match {
-    .text(normal);
-  }
+    .text(normal) }
 
   li.selected .character-match {
-    .text(selected);
-  }
+    .text(selected) }
 
-  li {
-      color: var(--color);
-    .with-selected-variant(@text-color);
-    .with-hovered-variant(@text-color);
-    .with-active-variant(@text-color);
-    line-height: @list-item-height !important;
-    padding: @component-padding / 4 @component-padding / 2 !important;
+  li .status-icon {
+    float: right;
+    margin-left: @component-icon-padding;
+    &:before { margin-right: 0 }}
 
-    &.two-lines {
-      padding: @component-padding / 4 @component-padding*2;
-    }
+  li.selected .status.icon {
+    color: @text-color-selected }
 
-    .status.icon {
-      float: right;
-      margin-left: @component-icon-padding;
+  li pre {
+    margin-bottom: 0 }
 
-      &:before {
-        margin-right: 0;
-      }
-    }
-
-    &.selected {
-      border-radius: 0 !important;
-
-      .status.icon {
-        color: @text-color-selected;
-      }
-    }
-  }
   li,
   span,
   span.title,
@@ -195,7 +164,29 @@ ol.list-group,
 
     &.selected {
       font-weight: 600 !important;
-      letter-spacing: -0.007em }}
+      letter-spacing: -0.007em }
+  }
+
+  &.mark-active {
+    li:before {
+      content:          '';
+      left:             auto;
+      right:            auto;
+      display:          inline-block;
+      position:         static;
+      background-color: transparent;
+      width:            @list-active-icon-size;
+      height:           @list-active-icon-size }
+
+    li::before {
+      margin-right: @component-icon-padding }
+
+    li.active {
+      .octicon(check, @list-active-icon-size) }
+
+    li.active::before {
+        color: @text-color-success }
+  }
 }
 
 
@@ -218,6 +209,9 @@ ol.list-group,
     transition: color @transition-time ease }
 }
 
+
+// Lists' sortable interface
+
 .ui-sortable li {
   line-height: @list-item-height }
 
@@ -228,8 +222,9 @@ ol.list-group,
 
 li.ui-draggable-dragging,
 li.ui-sortable-helper {
-  line-height: @list-item-height;
-  height: @list-item-height;
-  list-style: none;
-  padding: 0 @component-padding;
-  background: @background-color-highlight }
+  list-style:   none;
+  line-height:  @list-item-height;
+  height:       @list-item-height;
+  padding:      0 @component-padding;
+  background:   @background-color-highlight
+}

@@ -143,12 +143,15 @@
   font-family: @input-font-family;
   font-weight: @input-font-weight }
 
-.text(menu) {
+.text(label) {
   text-transform: uppercase;
-  text-align:     center;
   font-size:      0.7em !important;
   font-weight:    @menu-font-weight;
   letter-spacing: @menu-letter-spacing }
+
+.text(menu) {
+  .text(label);
+  text-align: center }
 
 
 
