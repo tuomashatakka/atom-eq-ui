@@ -62,60 +62,89 @@
   --color-hover:    @text-color-warning;
   --color-modified: @text-color-info;
   --color-modified-hover: @text-color-warning;
+  --color-close-overlay:  @text-color-error;
 
-  &::before {
-    vertical-align: middle;
-    text-align:     center;
-    display:        block;
-    margin:         0;
-    color:          inherit !important }
+  .tab-bar .tab &::before {
+    justify-content:  center;
+    vertical-align:   middle;
+    align-items:      center;
+    text-align:       center;
+    box-sizing:       content-box;
+    position:         absolute;
+    display:          flex;
+    cursor:           pointer;
+    padding:          0.5em 0.35em 0.5em 0.6em;
+    margin:           0;
+    width:            1em;
+    height:           1em;
+    line-height:      1em;
+    border-radius:    50%;
+    transition:       @transition-time transform ease, @transition-time color ease, @transition-time background-color ease;
+    transform:        scale(1) translate(-50%, -50%);
+    color:            inherit !important;
+    right:            0.2em;
+    top:              50%; }
 
-  &:hover::before {
+  &:hover,
+  .tab-bar .tab:hover & {
+    opacity:             1;
     transition-delay:    0 !important;
-    transition-duration: 500ms !important }
+    transition-duration: 0 !important }
 
   // Default
   .tab-bar .tab & {
-
-    display:         flex;
-    box-sizing:      border-box;
-    align-items:     center;
-    border-radius:   50%;
-    justify-content: center;
-    transition: transform @transition-time ease, color @transition-time ease, background @transition-time ease;
-    transform:  scale(1) translate(-50%, -50%);
-    opacity:    0;
-    cursor:     pointer;
-    height:     16px;
-    width:      16px;
-    right:      0.2em;
-    top:        50%;
-
-    border: 0px solid rgba(200,200,200,0.1);
+    display: inline;
+    opacity: 0;
+    transition: @transition-time opacity ease;
+    border:  0px solid rgba(200,200,200,0.1);
     border-color: var(--color);
-    color: var(--color) }
+    color:        var(--color) }
+
+  .tab-bar .tab &::after {
+    transition:     @transition-time background-color ease, @transition-time top ease;
+    background:     transparent;
+    position:       absolute;
+    cursor:         pointer;
+    bottom:         0;
+    right:          0;
+    left:           0;
+    top:            @tab-height;
+    content:        "";
+    border-radius:  1px;
+    mix-blend-mode: color-dodge }
+
+  .tab-bar .tab &:hover::after {
+    top:        0;
+    z-index:    100;
+    background: var(--color-close-overlay) }
+
 
   // Not modified, hover (close)
-  .tab-bar .tab &:hover {
-    transform:    scale(1) translate(-50%, -50%);
+  .tab-bar .tab &:hover::before {
     border-color: var(--color-hover);
     background:   @base-background-color;
     color:        var(--color-hover) }
 
   // Modified state (modified marker)
   .tab-bar .tab.modified:not(:hover) & {
+    position: absolute !important }
+
+  .tab-bar .tab &,
+  .tab-bar .tab.modified & {
+    position: static !important }
+
+  .tab-bar .tab.modified:not(:hover) &::before {
     border-width: 2px;
     border-color: var(--color-modified);
     color:        var(--color-modified) }
 
   // Modified, hover (close)
-  .tab-bar .tab.modified &:hover {
+  .tab-bar .tab.modified &:hover::before {
     border-color: var(--color-modified-hover);
     color: var(--color-modified-hover) }
 
   // Tab hover (display)
-  .tab-bar .tab:hover & {
+  .tab-bar .tab:hover &::before {
     opacity:    1;
-    transform:  scale(1) translate(-50%, -50%);
     background: @base-background-color }
 }
