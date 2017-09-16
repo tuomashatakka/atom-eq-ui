@@ -41,26 +41,29 @@
 
   // Backdrop for the list items
   li::before {
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: auto;
+    content:    "";
+    position:   absolute;
+    display:    block;
+    z-index:   -1;
+    top:        0;
+    left:      -1em;
+    right:      0;
+    bottom:     0;
+    height:     auto;
     transition: .25s background-color }
 
-  li:hover::before {
+  li:not(.list-nested-item):hover::before {
     transition-duration: .1s;
     background: darken(@background-color-selected, 2%) }
 
   li.selected::before {
     background: @background-color-selected;
-    left: -1em;
-    z-index: 0 }
+    left:      -1em;
+    z-index:    0 }
 
   li.selected:hover::before {
     background: lighten(@background-color-selected, 5%);
+    left:      -1em;
     z-index: 0 }
 
   li {
@@ -97,8 +100,56 @@
   li.list-nested-item.selected > .list-item {
     .text(selected);
     font-size: inherit }
+
+  .icon {
+    display:  inline-block;
+    height:   inherit;
+
+    &::before {
+      line-height:    1em;
+      height:         1em;
+      width:          1em;
+      top:            initial;
+      vertical-align: middle }
+  }
 }
 
+.list-tree.has-collapsable-children .list-nested-item {
+
+  &.collapsed > .list-item::before,
+  > .list-item::before {
+    content:          "\f078";
+    top:              0 !important;
+    left:             0 !important;
+    right:            0 !important;
+    bottom:           0 !important;
+    margin:           0 !important;
+    height:           1.4em !important;
+    line-height:      1.4em !important;
+    width:            1.4em !important;
+    transform:        rotate(90deg);
+    display:          block;
+    text-align:       center;
+    vertical-align:   middle;
+    transform-origin: center;
+    transition:
+      @transition-time transform,
+      @transition-time color }
+
+
+  // Animated caret rotation
+
+  > .list-item:hover::before {
+    transform: rotate(90deg) }
+
+  &.collapsed > .list-item::before {
+    content:   "\f078";
+    transform: rotate(0deg) }
+
+  &.collapsed > .list-item:hover::before {
+    transform: rotate(0deg) }
+
+}
 
 
 // Select lists
@@ -143,9 +194,26 @@ ol.list-group,
   li.selected .character-match {
     .text(selected) }
 
+
+    .two-lines .status.icon {
+      justify-content: center;
+      align-items: center;
+      position:   absolute;
+      display:    flex;
+      bottom:     0;
+      width:      3em;
+      right:      0;
+      top:        0;
+    }
+
+    .two-lines .status::before {
+      margin: 0;
+      font-size: 1.5em;
+    }
   li .status-icon {
     float: right;
     margin-left: @component-icon-padding;
+
     &:before { margin-right: 0 }}
 
   li.selected .status.icon {

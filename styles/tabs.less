@@ -3,50 +3,70 @@
 
 
 .tab-bar {
-  width: 100%;
-  display: table;
+  width:        100%;
+  display:      table;
   table-layout: fixed;
   -webkit-transform: scale(1);
-  height: auto;
+  padding:      @tab-bar-margin 0 0 !important;
+  background:   var(--background-color) linear-gradient(10deg, transparent 0%, fade(black, 15%) 60%) !important;
+  height:       auto;
+
+  .placeholder {
+    display: none }
 }
+
 
 .tab-bar .tab {
   .text(menu);
   .status-colors;
   .interactions(darken(@tab-bar-background-color, 4%));
+  .eq-tab;
 
-  background:   linear-gradient(transparent 40%, fade(black, 12%) 100%);
-  text-align:   center;
-  position:     relative;
-  display:      table-cell;
-  height:       @tab-height;
-  line-height:  @tab-height;
-  transition:   @transition-color;
-  padding:      0 @component-padding;
   width:        100%;
+  display:      table-cell;
+  padding:      0 @component-padding;
+  position:     relative;
+  transition:   @transition-color;
+  text-align:   center;
+  border-style: solid;
+  border-width: 0 !important;
+  border-radius: @component-border-radius / 2 @component-border-radius / 2 0 0;
+
+  // &:not(.active) {
+  //   background-color: transparent !important;
+  //   border-color:     transparent transparent @tab-border-color !important }
 
   &.active {
-    background-image: none;
+    border-color:     @tab-border-color @tab-border-color transparent !important;
     width:      100% }
 
+  &:hover {
+    transition-duration: @transition-time / 4;
+  }
+
   .title {
-    border-width: 0 0 1px;
-    border-style: solid;
-    border-color: inherit !important }
+    justify-content: center;
+    align-items:     center;
+    overflow:         hidden;
+    border-style:     solid;
+    border-width:     0 0 1px;
+    border-color:     inherit !important;
+    margin:           0.75em 0 !important;
+    display:          block }
 
   .icon,
   .icon::before {
     vertical-align: middle !important;
     line-height:    inherit;
-    padding: 0;
-    margin:  0 }
+    padding:        0;
+    margin:         0 }
 
   .icon::before {
     font-size:    @tab-icon-size;
-    margin:       0 @component-padding / 4 0 @component-padding / 8;
-    width:        1.2em;
-    height:       1.2em;
-    line-height:  1.2em }
+    margin:       0 @component-padding / 4 0 0;
+    width:        1.1em;
+    height:       1.1em;
+    line-height:  1.1em }
 
   .bottom & {
     height:       @tab-bottom-height;
@@ -54,8 +74,6 @@
     line-height:  @tab-bottom-height }
 }
 
-.tab-bar .placeholder {
-  display: none }
 
 .close-icon {
   --color:          @text-color-subtle;
@@ -63,6 +81,24 @@
   --color-modified: @text-color-info;
   --color-modified-hover: @text-color-warning;
   --color-close-overlay:  @text-color-error;
+
+  .tab-bar .tab &::after {
+    transition:     @transition-time background-color ease, @transition-time top ease;
+    background:     transparent;
+    position:       absolute;
+    cursor:         pointer;
+    bottom:         0;
+    right:          0;
+    left:           0;
+    top:            @tab-height * 2;
+    content:        "";
+    border-radius:  1px;
+    mix-blend-mode: color-dodge }
+
+  .tab-bar .tab &:hover::after {
+    top:        0;
+    z-index:    100;
+    background: var(--color-close-overlay) }
 
   .tab-bar .tab &::before {
     justify-content:  center;
@@ -99,24 +135,6 @@
     border:  0px solid rgba(200,200,200,0.1);
     border-color: var(--color);
     color:        var(--color) }
-
-  .tab-bar .tab &::after {
-    transition:     @transition-time background-color ease, @transition-time top ease;
-    background:     transparent;
-    position:       absolute;
-    cursor:         pointer;
-    bottom:         0;
-    right:          0;
-    left:           0;
-    top:            @tab-height;
-    content:        "";
-    border-radius:  1px;
-    mix-blend-mode: color-dodge }
-
-  .tab-bar .tab &:hover::after {
-    top:        0;
-    z-index:    100;
-    background: var(--color-close-overlay) }
 
 
   // Not modified, hover (close)

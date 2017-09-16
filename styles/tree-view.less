@@ -4,11 +4,18 @@
   .list-tree.full-menu {
     background: var(--background-color) }
 
+  .tree-view-root .list-tree {
+    flex-direction: column;
+    overflow-x:     hidden;
+    overflow-y:     auto;
+    position:       relative;
+    display:        flex }
+
   // List items
   .list-item {
-    display: flex;
-    align-items: center;
-    height: @list-item-height !important;
+    align-items:    center;
+    display:        flex;
+    height:         @list-item-height !important;
 
     span.name {
       display:     inline-block;
@@ -17,72 +24,72 @@
 
     span.name,
     .icon::before {
-      top:            0;
-      width:          1.2em;
-      font-size:      1.25em;
-      line-height:    inherit;
       vertical-align: top;
-      height:         auto }
+      line-height:    inherit;
+      font-size:      1.25em;
+      width:          1.2em;
+      height:         auto;
+      top:            0 }
   }
 
 
   // Project headers
-  &, .list-tree.full-menu, .project-root {
+  &,
+  .project-root,
+  .list-tree.full-menu {
     margin:   0;
     padding:  0 }
 
   .project-root-header + * {
-    padding-top: @list-item-height;
-    padding-bottom: 6em;
+    padding-top:    @list-item-height * 2;
+    padding-bottom: @list-item-height * 3;
   }
 
   .list-item.project-root-header {
     .text(menu);
     background: var(--background-color);
     height:     @list-head-height !important;
+    height:     @tab-height;
     width:      100%;
     z-index:    10000;
     padding:    0 !important;
     margin:     0 !important;
+    flex:       0 0;
 
     &.open {
       position: fixed;
       top:      @tab-height }
 
     > span.name {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      margin: 0;
-      padding: 0;
-      background: @base-background-color;
-      display: block;
-      width: 100%;
-      padding: 0 1em;
-      font-size: 1em !important;
-      height: @list-head-height !important;
-      line-height: @list-head-height !important;
-      box-sizing: border-box }
+      height:       @list-head-height !important;
+      line-height:  @list-head-height !important;
+      box-sizing:   border-box;
+      background:   @base-background-color;
+      font-size:    1em !important;
+      position:     absolute;
+      display:      block;
+      padding:      0 1em;
+      width:        100%;
+      top:          0;
+      left:         0;
+      right:        0;
+      margin:       0;
+      padding:      0 }
+
+    &::before {
+      display:      block;
+      z-index:      100;
+      width:        @list-head-height !important;
+      height:       @list-head-height !important;
+      line-height:  @list-head-height !important;
+      text-align:   center !important;
+      font-size:    1em !important }
   }
 
   .project-root.project-root.collapsed > .header {
     &:before { opacity: 0 }
     &:hover::before { opacity: 1 }
   }
-}
-
-.list-group .icon,
-.list-tree .icon {
-  display:  inline-block;
-  height:   inherit;
-
-  &::before {
-    line-height:    1em;
-    height:         1em;
-    width:          1em;
-    top:            initial;
-    vertical-align: middle }
 }
 
 .tree-view-resizer {
@@ -95,75 +102,15 @@ atom-panel.modal ol.list-group, .overlay ol.list-group {
 
 
 
-/**
- * Lists / tree view
- */
-
-.list-tree.has-collapsable-children .list-nested-item {
-
-  &.collapsed > .list-item::before,
-  > .list-item::before {
-    content:          "\f078";
-    top:              0 !important;
-    left:             0 !important;
-    right:            0 !important;
-    bottom:           0 !important;
-    margin:           0 !important;
-    height:           1.4em !important;
-    line-height:      1.4em !important;
-    width:            1.4em !important;
-    transform:        rotate(90deg);
-    display:          block;
-    text-align:       center;
-    vertical-align:   middle;
-    transform-origin: center;
-    transition:
-      @transition-time transform,
-      @transition-time color }
 
 
-  // Animated caret rotation
-
-  > .list-item:hover::before {
-    transform: rotate(90deg) }
-
-  &.collapsed > .list-item::before {
-    content:   "\f078";
-    transform: rotate(0deg) }
-
-  &.collapsed > .list-item:hover::before {
-    transform: rotate(0deg) }
-
-}
-
-
-
-.tree-view, .tree-view .list-tree.full-menu, .tree-view .project-root {
-  margin: 0;
-  padding: 0;
-  height: inherit;
-  display: flex;
+.tree-view,
+.tree-view .list-tree.full-menu,
+.tree-view .project-root {
   flex-direction: column;
-  overflow: hidden;
-}
-.tree-view .list-item.project-root-header {
-  flex: 0 0;
-  height: @tab-height;
-}
-
-.tree-view .tree-view-root .list-tree {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-}
-.list-tree.has-collapsable-children .list-nested-item > .list-item.project-root-header::before {
-
-  display: block;
-  z-index: 100;
-  width: 2em !important;
-  height: 2em !important;
-  text-align: center !important;
-  line-height: 2em !important;
-  font-size: 1em !important;
+  overflow:       hidden;
+  display:        flex;
+  height:         inherit;
+  margin:         0;
+  padding:        0;
 }
