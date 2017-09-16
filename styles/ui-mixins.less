@@ -1,14 +1,18 @@
 
 .eq-tab () {
-  --height: ~"calc(var(--tabHeight, 1) * 4em)";
-  height: var(--height);
+  --height:  ~"calc(var(--tabHeight, 1) * 4em)";
+  height:      var(--height);
   line-height: var(--height);
 }
 
 .eq-bar () {
-  --height: ~"calc(var(--statusBarHeight, @{list-item-height}) * 2em)";
-  height: var(--height);
+  --height:  ~"calc(var(--statusBarHeight, @{list-item-height}) * 2em)";
+  height:      var(--height);
   line-height: var(--height);
+}
+
+.scaled-text () {
+  font-size: ~"calc(@{font-size} * var(--size, 100) / 100)"
 }
 
 .button(@color) {

@@ -9,7 +9,7 @@ body {
   font-size: inherit }
 
 body, html, pre {
-  font-size: @text-size }
+  .scaled-text }
 
 .name,
 .list-tree li.list-item,
@@ -19,8 +19,8 @@ body, atom-panel,
 p, h1, h2, h3, h4, h5,
 table, td, th {
   .text(default);
-  .no-borders();
-  font-size:  1em }
+  .no-borders;
+  .scaled-text }
 
 atom-panel > * {
   border-style: none }

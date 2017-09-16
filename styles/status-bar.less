@@ -1,6 +1,7 @@
 
 .status-bar-item () {
   .text(label);
+  font-size: 0.8em !important;
   color:          @text-color-subtle;
   margin:         0 @component-padding / 4;
   max-width:      45%;
@@ -9,11 +10,11 @@
   text-align:     center;
   display:        table-cell;
   width:          auto;
-  flex:           1 1 1;
+  flex:           1 0;
+
   * {
-    line-height:    inherit;
-    align-items: center;
-  }
+    line-height:  inherit;
+    align-items:  center }
 }
 
 

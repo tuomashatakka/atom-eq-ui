@@ -28,7 +28,7 @@ export default class ThemeSettings {
     let { name } = require('../package.json')
 
     let updaters = [
-      atom.config.observe(descriptor('layout'), this.update.bind(this, 'layout')),
+      atom.config.observe(descriptor('layout'),  this.update.bind(this, 'layout')),
       atom.config.observe(descriptor('display'), this.update.bind(this, 'display')),
     ]
     this.subscriptions.add(...updaters)
@@ -45,10 +45,9 @@ export default class ThemeSettings {
 
     for (let [attr, value] of entries) {
       let handle = this.getHandlerFor(category, attr)
-      console.log(this, handle, attr, value)
-      handle.call(this, attr, value)
+      handle(attr, value)
     }
-    this.applyStylesheet.call(this)
+    this.applyStylesheet()
   }
 
   @self
