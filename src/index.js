@@ -1,13 +1,19 @@
 'use babel'
 
+import { CompositeDisposable } from 'atom'
+import Settings from './settings'
 
-export default class {
+let subscriptions
 
-  activate () {
- 
-  }
+export const config = require('./config.json')
 
-  deactivate () {
+export function activate () {
 
-  }
+  let settings  = new Settings()
+  subscriptions = new CompositeDisposable()
+  subscriptions.add(settings)
+}
+
+export function deactivate () {
+  subscriptions.dispose()
 }

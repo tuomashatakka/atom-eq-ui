@@ -1,4 +1,16 @@
 
+.eq-tab () {
+  --height: ~"calc(var(--tabHeight, 1) * 4em)";
+  height: var(--height);
+  line-height: var(--height);
+}
+
+.eq-bar () {
+  --height: ~"calc(var(--statusBarHeight, @{list-item-height}) * 2em)";
+  height: var(--height);
+  line-height: var(--height);
+}
+
 .button(@color) {
   color: @text-color;
   font-size: 12px;
