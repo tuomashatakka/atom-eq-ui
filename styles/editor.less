@@ -1,7 +1,6 @@
 
-atom-text-editor {
+atom-text-editor:not([mini]) {
   .dimmed(0);
-  background-color: var(--background-color) !important;
   font-weight:      @editor-font-weight;
 
   .gutter,
@@ -12,12 +11,10 @@ atom-text-editor {
     --background-color: @gutter-background-color-selected }
 
   .gutter.line-numbers {
-    .dimmed(1);
     background-color: var(--background-color) !important }
     // --background-color: @gutter-background-color }
 
   .gutter .line-number {
-    .dimmed(0);
     background-color: var(--background-color) !important }
 
   &[with-minimap] atom-overlay {
@@ -29,57 +26,60 @@ atom-text-editor {
 
 
 atom-text-editor[mini] {
-  transition:    all @transition-time ease;
-  padding-left:  @component-padding;
-  padding-right: @component-padding;
-  line-height:   @input-height - 2px;
-  max-height:    @input-height;
-  height:        @input-height;
+  .text(normal);
+  border-radius:  3em !important;
+  border-width:   1px;
+  border-style:   solid;
+  box-sizing:     border-box;
+  overflow:       hidden;
+  line-height:    @input-height - 2px;
+  max-height:     @input-height;
+  height:         @input-height;
+  max-height:     6em;
+  padding-left:   @component-padding;
+  padding-right:  @component-padding;
+  transition: @transition-color;
+  background-color: var(--background-color);
 
-  border: 1px solid @input-background-color;
-  background-color: @base-background-color;
-  border-radius:    @component-border-radius;
-  border-radius:    2em !important;
-  // padding: 1em 2em;
-  box-sizing:       border-box;
-  overflow:         hidden;
-  // height:           auto;
-  max-height:       6em;
+  span[class*='syntax-'] {
+    color: var(--text-color) !important }
 
-  .syntax--text,
-  .syntax--source {
-    color: @text-color }
+  &, .cursor {
+    border-color: var(--text-color) }
 
   .placeholder-text {
-    .text(subtle);
     height:      @input-height;
-    line-height: @input-height - 2px;
-  }
+    line-height: @input-height - 2px }
 
-  .cursor {
-    border-color: @text-color-highlight;
-  }
+  .selection .region {
+    background-color: var(--selection-color) }
 }
 
 atom-text-editor[mini].is-focused {
-  border: 1px solid @input-border-color-active;
-  color: @text-color-selected !important;
   background-color: @input-background-color-active;
-  background-color: @base-background-color !important;
-
-  span[class*='syntax-'] {
-    color: inherit !important }
-
-  .syntax--text,
-  .syntax--source {
-    color: @input-text-color-active }
-
-
-  &:hover {
-    border: 1px solid @text-color-highlight;
-    background-color: @input-background-color-active;
-    color: @text-color-highlight }
-
-  .selection .region {
-    background-color: fade(@background-color-highlight, 40%) }
 }
+
+
+@hover-effect-intensity: 15%;
+
+atom-text-editor[mini] {
+  --selection-color:  saturate(lighten(@input-background-color, 3%), 2%);
+  --background-color: @input-background-color;
+  --border-color:     @input-border-color;
+  --text-color:       @input-text-color }
+
+atom-text-editor[mini]:hover {
+  --background-color: @input-background-color;
+  --border-color:     fade(@input-border-color, 100% - @hover-effect-intensity * 4);
+  --text-color:       lighten(@input-text-color, @hover-effect-intensity) }
+
+atom-text-editor[mini].is-focused {
+  --selection-color:  saturate(darken(@input-background-color-active, 5%), 20%);
+  --background-color: @input-background-color-active;
+  --border-color:     @input-border-color-active;
+  --text-color:       @input-text-color-active }
+
+atom-text-editor[mini].is-focused:hover {
+  --background-color: lighten(@input-background-color-active, @hover-effect-intensity);
+  --border-color:     lighten(@input-border-color-active, @hover-effect-intensity);
+  --text-color:       lighten(@input-text-color-active, @hover-effect-intensity) }

@@ -1,31 +1,25 @@
 
 .status-bar-item () {
-  flex-shrink:    1;
-  flex-grow:      0;
-  font-size:      0.93em;
-  margin:         0 @component-padding / 4;
-  display:        table-cell;
-  text-align:     center;
   vertical-align: middle;
-
-  flex:       1 1 1;
-  width:      auto;
-  max-width:  45%;
-  margin:     0 @component-padding;
-}
-
+  text-align:     center;
+  font-size:      0.93em;
+  max-width:      45%;
+  display:        table-cell;
+  margin:         0 @component-padding;
+  width:          auto;
+  flex:           1 1 1 }
 
 
 status-bar {
   .text(menu);
   .highlighted(1%);
-  @margin: @component-padding * 0.5;
 
+  @margin:      @component-padding * 0.5;
   padding:      @margin 0;
   box-sizing:   content-box;
   background:   var(--background-color) !important;
   line-height:  @component-line-height;
-  height:       @component-line-height + @component-padding;
+  height:       @component-line-height + @component-padding / 4;
 
   .flexbox-repaint-hack {
     padding: 0 @margin / 2 }

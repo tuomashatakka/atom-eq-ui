@@ -18,7 +18,8 @@ atom-panel.modal,
   > * {
     flex-direction: column;
     display: flex;
-    height:  66vh;
+    height:  auto;
+    max-height: 70vh;
   }
 
   label,
@@ -28,10 +29,8 @@ atom-panel.modal,
 
   atom-text-editor[mini],
   atom-text-editor.mini {
+    --text-color: @text-color-highlight;
     .text(heading);
-    .syntax--text {
-      color: @text-color-highlight;
-    }
     font-size: 24px;
     line-height: 32px;
     height: auto;
@@ -40,16 +39,12 @@ atom-panel.modal,
     margin: 0 -@component-padding*2;
     padding: 0 @component-padding*2 @component-padding @component-padding*4;
     border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid @base-border-color;
+    border-radius: 0 !important;
+    border-width: 0 !important;
+    background-color: transparent !important;
 
     &.is-focused:hover,
     &:hover {
-      border-top: 0 !important;
-      border-left: 0 !important;
-      border-right: 0 !important;
-      border-bottom: 1px solid @base-border-color !important;
-      background-color: transparent !important;
     }
   }
 

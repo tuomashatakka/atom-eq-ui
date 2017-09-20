@@ -1,73 +1,29 @@
-/*
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-title      Core Package Support: markdown-preview          +
-project    nord-atom-ui                                    +
-repository https://github.com/arcticicestudio/nord-atom-ui +
-author     Arctic Ice Studio                               +
-email      development@arcticicestudio.com                 +
-copyright  Copyright (C) 2016                              +
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-[Index]
-  > GitHub Style
-  > Nord Style
-
-[References]
-Atom Packages
-  (https://atom.io/packages/markdown-preview)
-GitHub
-  (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-*/
-/*+-------------+
- + GitHub Style +
- +--------------+*/
+.markdown-preview:not([data-use-github-style]),
 .markdown-preview[data-use-github-style] {
+  color: @markdown-preview-text-color;
+  background-color: @markdown-preview-background-color !important;
+
   atom-text-editor {
-    padding: 16px;
+    padding: @component-padding * 3;
 
     .editor--private {
       span.source {
-        color: @markdown-preview-text-color;
-      }
+        color: @markdown-preview-text-color }
     }
   }
 
   atom-text-editor,
   code {
-    background-color: #F7F7F7 !important;
-    border-radius: 3px;
+    background-color: fade(#F7F7F7, 10%) !important;
+    border-radius: @component-padding;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
+  h1, h2, h3, h4, h5, h6 {
     color: #333333;
   }
-}
-
-/*+-----------+
- + Nord Style +
- +------------+*/
-.markdown-preview,
-.markdown-preview:not([data-use-github-style]) {
-  color: @markdown-preview-text-color;
-  background-color: @markdown-preview-background-color;
 
   a {
-    color: @text-color-info;
-  }
-
-  atom-text-editor {
-    padding: @component-padding*1.5;
-
-    .editor--private {
-      span.source {
-        color: @markdown-preview-text-color;
-      }
-    }
-  }
+    color: @text-color-info }
 
   atom-text-editor,
   code {
@@ -82,52 +38,48 @@ GitHub
   }
 
   blockquote {
-    border-left-color: @markdown-preview-border-color;
-  }
+    border-left-color: @markdown-preview-border-color }
 
   code {
     color: @markdown-preview-text-color;
-    background-clip: padding-box;
-  }
+    background-clip: padding-box }
 
-  h1,
-  h2,
-  h3 {
-    font-weight: bold;
-    border-color: @markdown-preview-border-color;
-  }
+  h1, h2, h3 {
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    border-color: @markdown-preview-border-color }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    color: @markdown-preview-text-color;
-  }
+  h1, h2, h3, h4, h5, h6 {
+    color: @markdown-preview-text-color }
 
   hr {
-    border: 1px solid @markdown-preview-border-color;
-  }
+    border: 1px solid @markdown-preview-border-color }
 
   strong {
-    color: @markdown-preview-text-color;
+    color: @markdown-preview-text-color }
+
+  img {
+    max-height: 24em;
+    object-fit: cover;
+    user-select: none;
   }
 
   table {
-    td,
-    th {
-      border-color: transparent;
-    }
+    td, th {
+      font-size:    1em;
+      border-color: transparent }
 
     th {
+      .text(menu);
       background-color: @markdown-preview-border-color;
+      color: @markdown-preview-background-color;
     }
 
     tr {
       background-color: @markdown-preview-table-body-color;
 
       &:nth-child(2n) {
-        background-color: darken(@markdown-preview-background-color, 3%);
+        background-color: darken(@markdown-preview-background-color, 0%);
       }
     }
   }
