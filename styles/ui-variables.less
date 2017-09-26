@@ -9,53 +9,68 @@
   border-color @transition-time ease,
   background-color @transition-time ease;
 
-@text-color:            @eq-color-text;
-@text-color-subtle:     mix(@eq-color-text, @eq-color-base, 50%);
-@text-color-highlight:  @eq-color-highlight;
-@text-color-selected:   lighten(@eq-color-highlight, 1%);
-@text-color-ignored:    @text-color-subtle;
+@text-color:                 @eq-color-text;
+@text-color-subtle:          mix(@eq-color-text, @eq-color-base, 50%);
+@text-color-highlight:       @eq-color-highlight;
+@text-color-selected:        lighten(@eq-color-highlight, 1%);
+@text-color-ignored:         @text-color-subtle;
 
-@text-color-info:       @eq-color-info;
-@text-color-renamed:    @eq-color-info;
-@text-color-success:    @eq-color-success;
-@text-color-added:      @eq-color-success;
-@text-color-warning:    @eq-color-warning;
-@text-color-modified:   @eq-color-modified;
-@text-color-error:      @eq-color-error;
-@text-color-removed:    @eq-color-error;
+@text-color-renamed:         @eq-color-info;
+@text-color-info:            @eq-color-info;
+@text-color-added:           @eq-color-success;
+@text-color-success:         @eq-color-success;
+@text-color-warning:         @eq-color-warning;
+@text-color-modified:        @eq-color-modified;
+@text-color-error:           @eq-color-error;
+@text-color-removed:         @eq-color-error;
 
-@background-color-highlight:  @eq-color-annotation;
-@background-color-selected:   @eq-color-dark;
-@background-color-info:       @eq-color-info;
-@background-color-success:    @eq-color-success;
-@background-color-warning:    @eq-color-warning;
-@background-color-error:      @eq-color-error;
+@background-color-highlight: @eq-color-annotation;
+@background-color-selected:  @eq-color-dark;
+@background-color-info:      @eq-color-info;
+@background-color-success:   @eq-color-success;
+@background-color-warning:   @eq-color-warning;
+@background-color-error:     @eq-color-error;
 
-@ui-site-color-1: @eq-color-info;
-@ui-site-color-2: @eq-color-success;
-@ui-site-color-3: @eq-color-warning;
-@ui-site-color-4: @eq-color-error;
-@ui-site-color-5: @eq-color-modified;
+@ui-site-color-1:            @eq-color-info;
+@ui-site-color-2:            @eq-color-success;
+@ui-site-color-3:            @eq-color-warning;
+@ui-site-color-4:            @eq-color-error;
+@ui-site-color-5:            @eq-color-modified;
 
-@progress-loading-bar-background-color: @eq-color-info;
+@base-border-color:                 @eq-color-dark;
+@app-background-color:              @eq-color-base;
+@base-background-color:             @eq-color-base;
 
 
-@base-border-color:     @eq-color-dark;
-@app-background-color:  @eq-color-base;
-@base-background-color: @eq-color-base;
+@input-text-color:                  desaturate(darken(@eq-color-lite, 9%), 8%);
+@input-border-color:                desaturate(darken(@eq-color-lite, 18%), 15%);
+@input-background-color:            @eq-color-base;
 
+@input-text-color-active:           @eq-color-base;
+@input-border-color-active:         @eq-color-text;
+@input-background-color-active:     @eq-color-text;
+
+
+@gutter-text-color:                 @text-color-subtle;
+@gutter-background-color:           lighten(@eq-color-base, 1%);
+
+@gutter-text-color-selected:        @text-color-selected;
+@gutter-background-color-selected:  lighten(@eq-color-base, 2%);
+
+@tooltip-text-color:                @eq-color-text;
+@tooltip-background-color:          @eq-color-annotation;
+
+@tooltip-key-text-color:            @eq-color-info;
+@tooltip-key-background-color:      @eq-color-annotation;
+
+@button-border-color:               @input-border-color;
 @button-background-color:           transparent;
+
 @button-background-color-hover:     @input-border-color;
 @button-background-color-selected:  @input-border-color;
 
-@input-text-color-active:           @eq-color-base;
-@input-background-color:            @eq-color-dark;
-@input-background-color-active:     @eq-color-annotation;
 
-@gutter-text-color:                 @text-color-subtle;
-@gutter-text-color-selected:        @text-color-selected;
-@gutter-background-color:           lighten(@eq-color-base, 1%);
-@gutter-background-color-selected:  lighten(@eq-color-base, 2%);
+
 
 @overlay-background-color:          @eq-color-base;
 @pane-item-background-color:        @eq-color-base;
@@ -63,36 +78,32 @@
 @tool-panel-background-color:       @eq-color-base;
 @inset-panel-background-color:      @eq-color-dark;
 @panel-heading-background-color:    @eq-color-dark;
+@tab-bar-background-color:          @eq-color-base;
 
-@tab-bar-background-color:    @eq-color-base;
-@tab-background-color:        lighten(@eq-color-dark, 2%);
-@tab-background-color-hover:  lighten(@eq-color-dark, 4%);
-@tab-background-color-active: lighten(@eq-color-dark, 0%);
-
-@scrollbar-track-color:       transparent;
-@scrollbar-color:             @eq-color-dark;
-@scrollbar-color-active:      @eq-color-dark;
-
-@input-border-color:          @eq-color-text;
-@input-border-color-active:   @input-background-color-active;
-@button-border-color:         @input-border-color;
-@scrollbar-border-color:      @base-border-color;
-@overlay-border-color:        @base-border-color;
-@pane-item-border-color:      @base-border-color;
-@inset-panel-border-color:    @base-border-color;
-@tool-panel-border-color:     @base-border-color;
-@panel-heading-border-color:  @base-border-color;
-@tab-bar-border-color:        @base-border-color;
-@tab-border-color:            @base-border-color;
-@tree-view-border-color:      @base-border-color;
-
-@tooltip-text-color:          @eq-color-text;
-@tooltip-background-color:    @eq-color-annotation;
-@tooltip-key-text-color:      @eq-color-info;
-@tooltip-key-background-color: @eq-color-annotation;
+@tab-background-color:              lighten(@eq-color-dark, 2%);
+@tab-background-color-hover:        lighten(@eq-color-dark, 4%);
+@tab-background-color-active:       lighten(@eq-color-dark, 0%);
 
 
-@use-custom-controls: true;
+
+@scrollbar-border-color:            @base-border-color;
+@overlay-border-color:              @base-border-color;
+@pane-item-border-color:            @base-border-color;
+@inset-panel-border-color:          @base-border-color;
+@tool-panel-border-color:           @base-border-color;
+@panel-heading-border-color:        @base-border-color;
+@tab-bar-border-color:              @base-border-color;
+@tab-border-color:                  @base-border-color;
+@tree-view-border-color:            @base-border-color;
+
+@scrollbar-color:                   @eq-color-dark;
+@scrollbar-color-active:            @eq-color-dark;
+@scrollbar-track-color:             transparent;
+
+@progress-loading-bar-background-color: @eq-color-info;
+
+
+
 
 @font-family-base:
   "Gotham",
@@ -135,11 +146,11 @@
 @indent-guide-improved-active-color: @eq-color-input;
 
 /*+--- markdown-preview ---+*/
-@markdown-preview-background-color: @eq-color-highlight;
-@markdown-preview-border-color: @eq-color-text;
-@markdown-preview-code-background-color: @eq-color-text;
-@markdown-preview-table-body-color: @eq-color-annotation;
-@markdown-preview-text-color: @eq-color-base;
+@markdown-preview-background-color:      @eq-color-base;
+@markdown-preview-border-color:          @eq-color-dark;
+@markdown-preview-code-background-color: @eq-color-dark;
+@markdown-preview-table-body-color:      mix(@eq-color-dark, @eq-color-base, 12%);
+@markdown-preview-text-color:            @eq-color-lite;
 
 /*+--- tool-bar ---+*/
 @tool-bar-spacer-border-color: @eq-color-text;
@@ -187,6 +198,7 @@
 
 // FIXME
 @rainbow-gradient:        linear-gradient(100deg, #3e91f9, #a9427b, #4c566a);
-@text-color:              #D8DEE9;
 @bracket-matcher-color:   fade(@text-color, 80%);
 @scrollbar-track-color:   darken(@base-background-color, 5%);
+
+@use-custom-controls: true;

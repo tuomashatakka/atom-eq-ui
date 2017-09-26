@@ -9,13 +9,13 @@ atom-panel-container {
   .no-borders }
 
 atom-pane-container.bottom {
-    margin-top: 2px;
-    border-top: 1px solid @tool-panel-border-color;
-    z-index: 3 }
+  margin-top: 2px;
+  border-top: 1px solid @tool-panel-border-color;
+  z-index: 3 }
 
 atom-pane-axis {
   &.horizontal > *:last-child {
-      border-right: none }
+    border-right: none }
 
   &.horizontal > * {
     border-right: 1px solid @base-border-color }
@@ -96,7 +96,8 @@ atom-panel {
   &.bottom > *:not(:empty):not(.status-bar) {
     background: @app-background-color;
     padding-top: @component-padding/2;
-    z-index: 3 } }
+    z-index: 3 }
+}
 
 
 .right atom-pane-container {
@@ -139,6 +140,7 @@ atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
   display: flex;
   align-items: center;
   justify-content: center;
+
   &.left,
   &.right {
     width:  @dock-toggle-size;
@@ -172,8 +174,7 @@ atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
     }
 
     &:hover {
-      background-color: lighten(@base-background-color, 3%);
-    }
+      background-color: lighten(@base-background-color, 3%) }
   }
 }
 
@@ -188,4 +189,5 @@ atom-panel-container atom-dock .item-views > *:not([style*="none"]) {
     background: transparent;
     position:   absolute;
     margin:     0;
-    width:      100% }}
+    width:      100% }
+}
