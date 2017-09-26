@@ -22,15 +22,16 @@
   .interactions(darken(@tab-bar-background-color, 4%));
   .eq-tab;
 
-  width:        100%;
-  display:      table-cell;
-  padding:      0 @component-padding;
-  position:     relative;
-  transition:   @transition-color;
-  text-align:   center;
-  border-style: solid;
-  border-width: 0 !important;
-  border-radius: @component-border-radius / 2 @component-border-radius / 2 0 0;
+  width:          100%;
+  display:        table-cell;
+  padding:        0; // 0 @component-padding;
+  position:       relative;
+  transition:     @transition-color;
+  text-align:     center;
+  vertical-align: middle;
+  border-style:   solid;
+  border-width:   0 !important;
+  border-radius:  @component-border-radius / 2 @component-border-radius / 2 0 0;
 
   // &:not(.active) {
   //   background-color: transparent !important;
@@ -44,29 +45,39 @@
     transition-duration: @transition-time / 4;
   }
 
+  [tab-coloring='true'] &.modified {
+    --background-color: @text-color-modified;
+    --color:            @base-background-color }
+
+  [tab-coloring='true'] & .title {
+    border-top-width:   0 }
+
   .title {
-    justify-content: center;
-    align-items:     center;
-    overflow:         hidden;
-    border-style:     solid;
-    border-width:     0 0 1px;
-    border-color:     inherit !important;
-    margin:           0.75em 0 !important;
-    display:          block }
+    justify-content:    center;
+    align-items:        center;
+    overflow:           hidden;
+    border-style:       solid;
+    border-width:       0.4em 0 0;
+    border-color:       inherit !important;
+    margin:             0 0 !important;
+    display:            flex }
+
+  .icon::before,
+  .title::before {
+    font-size:      @tab-icon-size;
+  }
 
   .icon,
-  .icon::before {
+  .title::before {
     vertical-align: middle !important;
     line-height:    inherit;
+    height:         auto;
     padding:        0;
-    margin:         0 }
-
-  .icon::before {
-    font-size:    @tab-icon-size;
-    margin:       0 @component-padding / 4 0 0;
-    width:        1.1em;
-    height:       1.1em;
-    line-height:  1.1em }
+    margin:         0;
+    // width:          1.1em;
+    // height:         1.1em;
+    // line-height:    1.1em
+  }
 
   .bottom & {
     height:       @tab-bottom-height;
@@ -107,7 +118,7 @@
     text-align:       center;
     box-sizing:       content-box;
     position:         absolute;
-    display:          flex;
+    display:          flex !important;
     cursor:           pointer;
     padding:          0.5em 0.35em 0.5em 0.6em;
     margin:           0;
@@ -116,7 +127,7 @@
     line-height:      1em;
     border-radius:    50%;
     transition:       @transition-time transform ease, @transition-time color ease, @transition-time background-color ease;
-    transform:        scale(1) translate(-50%, -50%);
+    transform:        scale(1) translate(-50%, -50%) rotate(45deg);
     color:            inherit !important;
     right:            0.2em;
     top:              50%; }
@@ -129,40 +140,53 @@
 
   // Default
   .tab-bar .tab & {
-    display: inline;
-    opacity: 0;
-    transition: @transition-time opacity ease;
-    border:  0px solid rgba(200,200,200,0.1);
+    .angle(0);
+    opacity:      0;
+    display:      inline;
+    border:       0px solid rgba(200,200,200,0.1);
+    transition:   @transition-time opacity ease;
     border-color: var(--color);
     color:        var(--color) }
-
-
-  // Not modified, hover (close)
-  .tab-bar .tab &:hover::before {
-    border-color: var(--color-hover);
-    background:   @base-background-color;
-    color:        var(--color-hover) }
-
-  // Modified state (modified marker)
-  .tab-bar .tab.modified:not(:hover) & {
-    position: absolute !important }
 
   .tab-bar .tab &,
   .tab-bar .tab.modified & {
     position: static !important }
 
+
+  // Not modified, hover (close)
+  .tab-bar .tab &:hover::before {
+    .angle(0);
+    border-color: var(--color-hover);
+    background:   @base-background-color;
+    color:        var(--color-hover) }
+
+  // Tab hover (display)
+  .tab-bar .tab:hover &::before {
+    .angle(0);
+    opacity:      1;
+    background:   @base-background-color }
+
+  // Modified state (modified marker)
+  .tab-bar .tab.modified:not(:hover) & {
+    position:     static !important;
+    opacity:      1;
+    border:       none }
+
   .tab-bar .tab.modified:not(:hover) &::before {
+    .angle(45);
+    opacity:      1;
     border-width: 2px;
     border-color: var(--color-modified);
     color:        var(--color-modified) }
 
   // Modified, hover (close)
   .tab-bar .tab.modified &:hover::before {
+    .angle(0);
     border-color: var(--color-modified-hover);
     color: var(--color-modified-hover) }
+}
 
-  // Tab hover (display)
-  .tab-bar .tab:hover &::before {
-    opacity:    1;
-    background: @base-background-color }
+
+.angle (@a: 0deg) {
+  transform: translate(-50%, -50%) rotate(unit(@a, deg));
 }

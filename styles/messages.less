@@ -30,6 +30,7 @@
     background-color: mix(@background-color-info, @app-background-color, 5%);
     border-color:     mix(@background-color-info, @app-background-color, 50%);
     color:            @text-color-info;
+    color:            @base-background-color !important;
   }
 
   &.error-message,
@@ -37,5 +38,6 @@
     background-color: mix(@background-color-error, @app-background-color, 5%);
     border-color:     mix(@background-color-error, @app-background-color, 50%);
     color:            @text-color-error;
+    color:            @base-background-color !important;
   }
 }

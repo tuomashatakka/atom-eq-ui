@@ -160,13 +160,14 @@
   font-weight: @input-font-weight }
 
 .text(label) {
-  text-transform: uppercase;
-  font-size:      0.7em !important;
+  font-size:      0.78em !important;
   font-weight:    @menu-font-weight;
-  letter-spacing: @menu-letter-spacing }
+  letter-spacing: @menu-letter-spacing / 2 }
 
 .text(menu) {
   .text(label);
+  letter-spacing: @menu-letter-spacing;
+  text-transform: uppercase;
   text-align: center }
 
 
