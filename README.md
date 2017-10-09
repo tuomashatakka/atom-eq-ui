@@ -1,5 +1,5 @@
-# eq
+![logo](file://../assets/eq-ui-logo.svg)
 
-The most impressive Atom UI theme so far.
+# eq ui theme
 
-Get effective.
+A minimal user interface theme with dark colors and just beautiful looks.
