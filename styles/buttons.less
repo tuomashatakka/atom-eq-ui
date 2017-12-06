@@ -34,6 +34,10 @@ button.icon,
   padding:     0em 0.8em;
   line-height: @component-line-height * 1.5;
 
+  .btn {
+    border-color: @button-border-color !important
+  }
+
   .btn:first-child:not(:last-child) {
     border-top-right-radius:    0 !important;
     border-bottom-right-radius: 0 !important }
@@ -98,4 +102,26 @@ button.icon,
     font-weight:    300;
     letter-spacing: 0.25em;
     text-transform: uppercase }
+}
+
+
+
+
+.btn::before {
+  display: inline-block;
+  height: 0;
+  margin-top: -3px;
+}
+
+.btn-sm {
+  min-width: 4em;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+
+.btn::before {
+  vertical-align: middle;
+  margin: 0;
+  display: inline;
+  line-height: 0;
 }

@@ -6,10 +6,14 @@ atom-panel {
   background-color: @base-background-color !important }
 
 body {
-  font-size: inherit }
+  .scaled-text; }
 
 body, html, pre {
   .scaled-text }
+
+html {
+  font-size: ~"calc(var(--scale) / 100 * @{font-size})";
+}
 
 .name,
 .list-tree li.list-item,
@@ -33,8 +37,75 @@ table, td, th {
   .no-borders }
 
 .config-menu li a {
-.text(default);
-  padding: @component-padding 0em @component-padding @component-padding * 2 !important }
+  &::before {
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1em;
+    font-size: 1rem;
+    margin-top: 1px;
+  }
+  .text(menu);
+  font-size: 0.6em !important;
+  text-align: left;
+  padding: @component-padding / 2 0em @component-padding / 2 @component-padding / 0.75 !important }
 
 .tool-bar-spacer {
   opacity: 0 }
+
+.preview-pane .btn-toolbar {
+  flex-wrap: nowrap;
+
+  .btn-group {
+    display: flex;
+  }
+
+  .btn {
+    float: none !important;
+  }
+}
+
+
+
+
+table.table td,
+table.table th {
+  font-size: 0.8em !important;
+  font-weight: 300;
+  padding: 0.1em 0.3em !important;
+  margin: 0 !important;
+}
+
+tr:nth-of-type(2n) > * {
+  background-color: #2f2c3a;
+  border-radius: 4px;
+}
+
+th[width='5%'],
+th[width='3%'] {
+  width: 6%;
+}
+
+
+.icon[class*='-collapsable']::before {
+  content: "\f078" !important;
+  transform: rotate(90deg);
+  transition: .3s transform;
+}
+
+.icon[class*='-collapsable'][class*='-right']::before {
+  transform: rotate(0deg);
+}
+
+
+
+
+atom-text-editor.atom-text-editor-sm.editor.mini {
+  max-width: 32em;
+  flex-grow: 0;
+}
+
+.select-list.popover-list {
+  max-width: 24em;
+  box-shadow: none !important;
+  border: none !important;
+}

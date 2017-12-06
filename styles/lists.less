@@ -29,12 +29,13 @@
 
 .list-group,
 .list-tree {
+  .scaled-text();
 
   li .character-match {
     transition: @transition-color }
 
   li.selected .character-match {
-    font-size: @font-size }
+    .scaled-text() }
 
   li.selected .word {
     color: @text-color-selected !important }
@@ -77,12 +78,12 @@
 
   li:not(.list-nested-item),
   li.list-nested-item > .list-item {
+    .text(normal);
     color: var(--color);
     min-height: @list-item-height !important;
     .with-selected-variant(@text-color);
     .with-hovered-variant(@text-color);
-    .with-active-variant(@text-color);
-    .text(normal) }
+    .with-active-variant(@text-color) }
 
   .li-text-color(info);
   .li-text-color(success);
@@ -99,7 +100,8 @@
   li.list-item.selected,
   li.list-nested-item.selected > .list-item {
     .text(selected);
-    font-size: inherit }
+    .scaled-text();
+  }
 
   .icon {
     display:  inline-block;
@@ -176,7 +178,7 @@ ol.list-group,
 
     .secondary-line {
       .text(subtle);
-      font-size:      0.82em !important;
+      .scaled-text();
       margin-top:    -0.5em;
       padding-bottom: 0.5em }
 
@@ -208,8 +210,9 @@ ol.list-group,
 
     .two-lines .status::before {
       margin: 0;
-      font-size: 1.5em;
+      .scaled-text()
     }
+
   li .status-icon {
     float: right;
     margin-left: @component-icon-padding;
@@ -228,7 +231,7 @@ ol.list-group,
   span[title] {
     font-weight: inherit !important;
     font-family: inherit !important;
-    font-size:   inherit !important;
+    .scaled-text();
 
     &.selected {
       font-weight: 600 !important;
