@@ -1,12 +1,48 @@
 'use babel'
+// @flow
+
 import { CompositeDisposable } from 'atom'
 import self from 'autobind-decorator'
-import toCSS from './css'
+import toCSS, { toLessVariables } from './css'
+import { applyCss } from './config'
+
+
+const { name } = require('../package.json')
+
+const descriptor = (...path) =>
+  [ name, ...path ].join('.')
+
+function observe (key) {
+  return atom.config.observe(
+    descriptor(key),
+    this.update.bind(this, key)
+  )
+}
+
+
+type HandlersType = {
+  colors: {},
+  layout: {},
+  display: {},
+}
+
+type Color = {
+  toRGBAString: () => string,
+}
+
+type HandlerMethodType = (name: string, config: {} | string | number) => any
+
 
 export default class ThemeSettings {
 
-  get handlers () {
+  state: {}
+  subscriptions: CompositeDisposable
+
+  get handlers (): HandlersType {
     return {
+      colors: {
+        tint:            this.updateTintColor,
+      },
       display: {
         dockTabs:        this.updateTabVisibility,
         coloredTabs:     this.updateTabColoring,
@@ -23,14 +59,8 @@ export default class ThemeSettings {
   constructor () {
     this.state = {}
     this.subscriptions = new CompositeDisposable()
-
-    let descriptor = (...path) => [ name, ...path ].join('.')
-    let { name } = require('../package.json')
-
-    let updaters = [
-      atom.config.observe(descriptor('layout'),  this.update.bind(this, 'layout')),
-      atom.config.observe(descriptor('display'), this.update.bind(this, 'display')),
-    ]
+    let keys     = [ 'colors', 'layout', 'display' ]
+    let updaters = keys.map(observe.bind(this))
     this.subscriptions.add(...updaters)
   }
 
@@ -40,9 +70,8 @@ export default class ThemeSettings {
   }
 
   @self
-  update (category, config) {
+  update (category: string, config: {}) {
     let entries = Object.entries(config)
-
     for (let [attr, value] of entries) {
       let handle = this.getHandlerFor(category, attr)
       handle(attr, value)
@@ -51,7 +80,7 @@ export default class ThemeSettings {
   }
 
   @self
-  getHandlerFor (...path) {
+  getHandlerFor (...path: Array<string>): HandlerMethodType {
     let part
     let handler = this.handlers
     while (handler && (part = path.shift()))
@@ -64,58 +93,73 @@ export default class ThemeSettings {
     let source = this.css
     let priority = 3
     let sourcePath = `eq-settings`
-    let subscription = atom.styles.addStyleSheet(source, { sourcePath, priority })
+    let subscription: atom$Disposable = atom.styles.addStyleSheet(source, { sourcePath, priority })
 
+    atom.notifications.addInfo("Stylesheet applied", { description: source })
     this.subscriptions.add(subscription)
   }
 
-  get css () {
+  get css (): string {
     return toCSS({ ':root': this.state })
   }
 
+  get less (): string {
+    return toLessVariables(this.state)
+  }
+
   @self
-  updateStyle (state) {
+  updateStyle (state: {}) {
     Object.assign(this.state, state)
   }
 
   @self
-  updateTabVisibility (prop, val) {
+  // eslint-disable-next-line class-methods-use-this
+  updateTabVisibility (prop: string, val: boolean) {
     let workspace = getWorkspace()
-    workspace.setAttribute('tab-visible', val)
+    workspace.setAttribute('tab-visible', val.toString())
   }
 
   @self
-  updateTabColoring (prop, val) {
+  // eslint-disable-next-line class-methods-use-this
+  updateTabColoring (prop: string, val: boolean) {
     let workspace = getWorkspace()
-    workspace.setAttribute('tab-coloring', val)
+    workspace.setAttribute('tab-coloring', val.toString())
   }
 
   @self
-  updateLayoutSpacing (attr, value) {
+  updateLayoutSpacing (attr: string, value: number) {
     attr = `--${attr}`
     this.updateStyle({ [attr]: value })
   }
 
   @self
-  updateLayoutSize (attr, value) {
+  updateLayoutSize (attr: string, value: number) {
     attr = `--${attr}`
     this.updateStyle({ [attr]: value })
   }
 
   @self
-  updateTabHeight (attr, value) {
+  updateTabHeight (attr: string, value: number) {
     attr = `--${attr}`
     this.updateStyle({ [attr]: value })
   }
 
   @self
-  updateStatusBarHeight (attr, value) {
+  updateStatusBarHeight (attr: string, value: number) {
     attr = `--${attr}`
     this.updateStyle({ [attr]: value })
+  }
+
+  @self
+  updateTintColor (attr: string, value: Color) {
+    let prop  = `--${attr}`
+    let color = value.toRGBAString()
+    this.updateStyle({ [prop]: color })
+    applyCss(this.less)
   }
 }
 
-function getWorkspace () {
+function getWorkspace (): HTMLElement {
   return atom.views.getView(atom.workspace)
 }
 

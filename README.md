@@ -1,4 +1,4 @@
-![logo](file://../assets/eq-ui-logo.svg)
+![logo](file://./assets/eq-ui-logo.svg)
 
 # eq ui theme
 

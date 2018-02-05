@@ -14,8 +14,8 @@
       },
       "coloredTabs": {
         "order": 2,
-        "title": "Filled tabs coloring",
-        "description": "If enabled, tabs' states are displayed as fill colors. If disabled, a more subtle border coloring is used to display the state for tabs",
+        "title": "Inverse tab colors",
+        "description": "If enabled, tabs' active/inactive background colors are inverted.",
         "type": "boolean",
         "default": true
       }
@@ -76,6 +76,19 @@
           1.25,
           1.5
         ]
+      }
+    }
+  },
+  "colors": {
+    "order": 3,
+    "title": "Theme colors",
+    "type": "object",
+    "properties": {
+      "tint": {
+        "order": 1,
+        "title": "Tint color",
+        "type": "color",
+        "default": "#808080"
       }
     }
   }

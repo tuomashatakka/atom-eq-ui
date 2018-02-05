@@ -1,44 +1,31 @@
+@import "./config";
 
-@eq-color-base: #3d384b;                      // main background
-@eq-color-dark: #353141;                      // Dark variant for the base color
-@eq-color-lite: #9ea3c8;                      // Light variant for the base color
-@eq-color-text: #c2c7e4;                      // Text color
+@tint-color:          @eq-config-tint;
+@tint-amount:         92;
 
-// @eq-color-base: #473a55;                   // main background
-// @eq-color-dark: #5f5a77;                   // Slightly lightened version of the base color
-// @eq-color-text: #e5e7f6;                   // Text color
-@eq-color-mdlo: lighten(@eq-color-base, 3%);  // Slightly lightened version of the base color
-@eq-color-mdhi: lighten(@eq-color-base, 8%);  // Slightly lightened version of the base color
+@eq-color-text:       mix(#c2c7e4, @tint-color, @tint-amount);                      // MAIN text
+@eq-color-base:       mix(#343240, @tint-color, @tint-amount);                      // main background
 
-@eq-color-input:      #533cdd;                // Input fields' highlights
-@eq-color-highlight:  #f2f4ff;                // highlighted & selected text
-@eq-color-annotation: #ecdae9;                // Backgrounds in subtle highlights
+@eq-color-dark:       mix(#3a3849, @tint-color, @tint-amount);                      // Slightly lightened version of the base color
+@eq-color-lite:       mix(#9ea3c8, @tint-color, @tint-amount);                      // Light variant for the base color
+@eq-color-mdlo:       mix(lighten(@eq-color-base, 3%), @tint-color, @tint-amount);  // Slightly lightened version of the base color
+@eq-color-mdhi:       mix(lighten(@eq-color-base, 8%), @tint-color, @tint-amount);  // Slightly lightened version of the base color
 
-@eq-color-info:       #63b4c4;                // inputs, something else?
-@eq-color-success:    #74c38f;                // green / success
-@eq-color-warning:    #dbc290;                // warning
-@eq-color-modified:   #ab80b3;                // modified
-@eq-color-error:      #d04168;                // red / error
+@eq-color-input:      mix(#533cdd, @tint-color, @tint-amount);                      // Input fields' highlights
+@eq-color-highlight:  mix(#f2f4ff, @tint-color, @tint-amount);                      // highlighted & selected text
+@eq-color-annotation: mix(#ecdae9, @tint-color, @tint-amount);                      // Backgrounds in subtle highlights
 
-// @eq-color-base: #473a55; // main background
-// @eq-color-dark: #5f5a77; // Slightly lightened version of the base color
-// @eq-color-text: #e5e7f6;   // MAIN text
+@eq-color-highlight:  mix(#f2f4ff, @tint-color, @tint-amount);                      // highlighted & selected text
+@eq-color-annotation: mix(#3d3b49, @tint-color, @tint-amount);                      // Backgrounds in subtle highlights
+@eq-color-input:      mix(#533cdd, @tint-color, @tint-amount);                      // Input fields' highlights
 
-@eq-color-base:       #343240; // main background
-@eq-color-dark:       #3a3849; // Slightly lightened version of the base color
-@eq-color-text:       #c2c7e4;   // MAIN text
-
-@eq-color-highlight:  #f2f4ff;   // highlighted & selected text
-@eq-color-annotation: #3d3b49; // Backgrounds in subtle highlights
-@eq-color-input:      #533cdd;   // Input fields' highlights
-
-@eq-color-info:       #4f6edb;   // inputs, something else?
-@eq-color-success:    #74c38f;  // green / success
-@eq-color-warning:    #dbc290;  // warning
-@eq-color-modified:   #cd8eb4;  // modified
-@eq-color-error:      #d7305e;  // red / error
-// @eq-color-5: #E5E9F0;   // DUNNOLOL
-// @eq-color-7: #57e2e2;   // cyan ???
-// @eq-color-9: #237bd2;   // blue / primary
-// @eq-color-10: #5541f6;  // purple ICCCE
-// @eq-color-15: #ee57d3;  // pink
+@eq-color-info:       mix(#4f6edb, @tint-color, @tint-amount);                      // inputs, something else?
+@eq-color-success:    mix(#73e99c, @tint-color, @tint-amount);                      // green / success
+@eq-color-warning:    mix(#dbc290, @tint-color, @tint-amount);                      // warning
+@eq-color-modified:   mix(#cd8eb4, @tint-color, @tint-amount);                      // modified
+@eq-color-error:      mix(#d7305e, @tint-color, @tint-amount);                      // red / error
+// @eq-color-info:       #63b4c4;                // inputs, something else?
+// @eq-color-success:    #74c38f;                // green / success
+// @eq-color-warning:    #dbc290;                // warning
+// @eq-color-modified:   #ab80b3;                // modified
+// @eq-color-error:      #d04168;                // red / error

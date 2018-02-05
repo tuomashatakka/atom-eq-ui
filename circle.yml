@@ -1,15 +1,4 @@
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# title      Circle CI Build Configuration                   +
-# project    nord-atom-ui                                    +
-# repository https://github.com/arcticicestudio/nord-atom-ui +
-# author     Arctic Ice Studio                               +
-# email      development@arcticicestudio.com                 +
-# copyright  Copyright (C) 2016                              +
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#
-# [References]
-# Circle CI
-#   (https://circleci.com/docs)
+
 machine:
   environment:
     ATOM_LINT_WITH_BUNDLED_NODE: "true"
