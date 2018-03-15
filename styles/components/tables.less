@@ -1,0 +1,33 @@
+
+
+
+table, th, td {
+  font-size: 1em !important;
+  i {
+    font-style: normal;
+    font-weight: 300;
+  }
+}
+
+th {
+  font-weight: 400 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8em !important;
+}
+
+tr:nth-of-type(2n) > * {
+  background: transparent;
+  border-radius: 0px;
+}
+
+table tr:nth-child(2n + 1) {
+  background: transparent !important;
+  border-radius: 0;
+}
+
+tr {
+  border: 1px solid lighten(@app-background-color, 8%) !important;
+  border-collapse: collapse;
+  border-width: 0 0px 1px 0px;
+}

@@ -205,3 +205,28 @@
     margin-left: 1em;
   }
 }
+
+/**
+ * Settings
+ */
+
+.lines > * {
+  position: relative;
+  z-index: 10000;
+}
+
+.breadcrumb + * {
+  padding-top: 6rem !important;
+}
+
+.breadcrumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4000;
+  padding: 0 0 0 1rem !important;
+  line-height: 3rem;
+  right: 0;
+  background: @base-background-color !important;
+  &:extend(.label);
+}

@@ -104,3 +104,47 @@ atom-notifications {
     color: @text-color-info;
     background-color: @background-color-info }
 }
+
+atom-notifications {
+
+  atom-notification.has-close:first-child .message,
+  atom-notification.has-close .message,
+  atom-notification .message {
+    padding-right: 1.5em !important;
+  }
+
+  atom-notification.info { --color: @text-color-info }
+  atom-notification.success { --color: @text-color-success }
+  atom-notification.warning { --color: @text-color-warning }
+  atom-notification.error { --color: @text-color-error }
+  atom-notification.fatal { --color: @text-color-error }
+  atom-notification {
+    font-size: 0.8em;
+    line-height: 1.25em;
+    padding: 1em 2em 2em 0.5em !important;
+
+    .item.message p,
+    .item.message p:last-child,
+    .item.message p code {
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: 400;
+      letter-spacing: -0.045em;
+    }
+
+    .close-all.btn {
+      color: var(--color) !important;
+      border-color: initial !important;
+      opacity: 0.5;
+      padding: 0.3em 0.8em;
+      height: auto !important;
+    }
+  }
+  atom-notification.icon::before {
+    z-index: 100000;
+    color: white !important;
+    opacity: 0.3;
+    width: 30px !important;
+    padding: 0 0 0 0.5em !important;
+  }
+}

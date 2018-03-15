@@ -1,4 +1,8 @@
 
+@list-item-height:  2rem;
+@list-item-inset:   3rem;
+
+
 .li-state (@class, @color) {
   li.list-item@{class},
   li.list-nested-item@{class} > .list-item {
@@ -22,6 +26,14 @@
   @classname:      ~".status-@{state}";
   @varname:        ~"text-color-subtle";
   .li-state(@classname, @varname) }
+
+.match () {
+
+  & span.character-match {
+    font-size: inherit !important;
+    // font-size: ~"calc((@{font-size} - 3px) * var(--size, 100) / 100)" !important;
+  }
+}
 
 
 
@@ -81,6 +93,7 @@
     .text(normal);
     color: var(--color);
     min-height: @list-item-height !important;
+    line-height: @list-item-height;
     .with-selected-variant(@text-color);
     .with-hovered-variant(@text-color);
     .with-active-variant(@text-color) }
@@ -132,7 +145,6 @@
     transform:        rotate(90deg);
     display:          block;
     text-align:       center;
-    vertical-align:   middle;
     transform-origin: center;
     transition:
       @transition-time transform,
@@ -298,4 +310,65 @@ li.ui-sortable-helper {
   height:       @list-item-height;
   padding:      0 @component-padding;
   background:   @background-color-highlight
+}
+
+
+// Outline
+.outline-view-trees.has-collapsable-children {
+  --size: 75;
+
+  .list-nested-item > .list-tree > .list-item {
+    padding-left: @list-item-inset;
+  }
+
+  .list-item span {
+    font-weight: 200;
+  }
+}
+
+
+.list-group li.selected::before,
+.list-tree li.selected::before {
+  line-height: inherit;
+  height:      @list-item-height;
+}
+
+
+
+// List group
+
+ul.list-group,
+ol.list-group {
+
+  .modal .select-list &,
+  .modal.select-list &,
+  .select-list &,
+  & {
+
+    li {
+      .match()
+    }
+
+    li.two-lines {
+      font-size: ~"calc(@{font-size} * var(--size, 100) / 100)";
+      letter-spacing: 1px !important;
+      font-weight: 300;
+
+      .primary-line {
+        font-size: inherit !important;
+        letter-spacing:inherit;
+        color: @text-color;
+        .match()
+      }
+
+      .secondary,
+      .secondary-line {
+        font-size: inherit !important;
+        letter-spacing:inherit;
+        font-weight: inherit;
+        color: @text-color-subtle;
+        .match()
+      }
+    }
+  }
 }
