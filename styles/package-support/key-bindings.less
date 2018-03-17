@@ -1,0 +1,29 @@
+.key-binding-resolver {
+  table, tbody, tr, td, th {
+    border-width: 0 !important;
+  }
+
+  .table-condensed tr {
+    display: flex;
+    align-items: center;
+  }
+
+  .table-condensed td,
+  .table-condensed th {
+    font-size: 0.65em !important;
+    line-height: 1em !important;
+    height: auto;
+
+    padding: 0.5em 0.4em 0.5em 1em;
+    display: flex;
+    align-items: center;
+    &::before {
+      font-size: 1.4em !important;
+      line-height: inherit !important;
+      height: auto !important;
+    }
+  }
+  .panel-body {
+    padding: 0;
+  }
+}

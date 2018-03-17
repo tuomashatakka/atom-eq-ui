@@ -1,9 +1,18 @@
+@editor-background-lightness: 1%;
+@editor-selection-lightness:  8%;
+@editor-shadow-intensity:     0%;
+@editor-shadow-size:          1em;
+@editor-margin:               0;
 
-atom-text-editor:not([mini]) {
+@hover-effect-intensity: 15%;
+
+
+atom-text-editor:not([mini]):not(.mini) {
   .dimmed(0);
   // FIXME
   background-color: @editor-background-color;
   font-weight:      @editor-font-weight;
+  background-color: var(--background-color) !important;
 
   .gutter,
   .gutter-container {
@@ -41,7 +50,10 @@ atom-text-editor[mini] {
   padding-left:   @component-padding;
   padding-right:  @component-padding;
   transition: @transition-color;
-  background-color: var(--background-color);
+  color: var(--text-color);
+  background-color: var(--background-color) !important;
+  transition: @transition-color, border-radius 2s !important;
+
 
   span[class*='syntax-'] {
     color: var(--text-color) !important }
@@ -61,8 +73,6 @@ atom-text-editor[mini].is-focused {
   background-color: @input-background-color-active;
 }
 
-
-@hover-effect-intensity: 15%;
 
 atom-text-editor[mini] {
   --selection-color:  saturate(lighten(@input-background-color, 3%), 2%);
@@ -85,3 +95,56 @@ atom-text-editor[mini].is-focused:hover {
   --background-color: lighten(@input-background-color-active, @hover-effect-intensity);
   --border-color:     lighten(@input-border-color-active, @hover-effect-intensity);
   --text-color:       lighten(@input-text-color-active, @hover-effect-intensity) }
+
+
+/**
+ * Editor background/selection colors
+ */
+
+
+.editor-container {
+   contain: content;
+}
+
+atom-text-editor[mini],
+atom-text-editor.mini {
+  &:not(.is-focused) {
+    border-color: transparent;
+    border-bottom-color: inherit;
+    border-radius:  0 !important;
+    transition-duration: 200ms !important;
+  }
+
+  &.is-focused {
+    border-color: var(--background-color) !important
+  }
+
+  &:hover:not(.is-focused) {
+    --background-color: lighten(@base-background-color, @editor-selection-lightness) !important;
+    background-color: var(--background-color) !important
+  }
+}
+
+atom-text-editor:not(mini):not(.mini) {
+
+  .item-views & {
+    --background-color: lighten(@base-background-color, @editor-background-lightness);
+    margin: @editor-margin;
+    box-shadow: 0 0 @editor-shadow-size fade(black, @editor-shadow-intensity);
+  }
+
+  .scroll-view > div,
+  .gutter.line-numbers .line-number {
+    opacity: 1;
+    background-color: var(--background-color) !important;
+  }
+
+  .selection .region,
+  .line.cursor-line,
+  .gutter.line-numbers .cursor-line {
+    --text-color: lighten(@gutter-text-color, 10%);
+    --background-color: lighten(@base-background-color, @editor-selection-lightness);
+    // background-color: var(--background-color);
+    color: var(--text-color, @gutter-text-color);
+  }
+}

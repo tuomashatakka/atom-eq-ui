@@ -1,0 +1,46 @@
+/**
+ * Hyperclick
+ */
+
+
+// @datatip-marker-color:               fade(@background-color-error, 10%);
+@datatip-marker-color:               transparent;
+@hyperclick-marker-color:            fade(@text-color-warning, 10%);
+
+@hyperclick-marker-border-radius:    @component-border-radius / 8;
+@hyperclick-marker-border-width:     0;
+@hyperclick-marker-blend-mode:       screen;
+@hyperclick-marker-padding:          0.5px 2px;
+@hyperclick-marker-shadow:           1px 2px 1em fade(darken(@base-background-color, 5%), 5%);
+
+.marker (@color) {
+  box-sizing:     content-box !important;
+  box-shadow:     @hyperclick-marker-shadow;
+  background:     @color;
+  border-radius:  @hyperclick-marker-border-radius;
+  padding:        @hyperclick-marker-padding;
+  border:         @hyperclick-marker-border-width solid lighten(@color, 4%);
+  margin:         -1 * extract(@hyperclick-marker-padding, 1) - @hyperclick-marker-border-width 0 0
+                  -1 * extract(@hyperclick-marker-padding, 2) - @hyperclick-marker-border-width;
+}
+
+
+.highlights {
+  .highlight {
+    mix-blend-mode:soft-light;
+  }
+  .hyperclick {
+    &.highlight {
+      // mix-blend-mode: @hyperclick-marker-blend-mode;
+    }
+    &.region {
+      .marker(@hyperclick-marker-color);
+    }
+  }
+
+  .datatip-highlight-region {
+    .region {
+      .marker(@datatip-marker-color);
+    }
+  }
+}

@@ -98,3 +98,31 @@ status-bar {
     display: block;
   }
 }
+
+status-bar {
+  @margin: 0.3rem;
+
+  .status-bar-left .inline-block {
+    margin-left: 0;
+    margin-right: @margin;
+    &:last-child { margin-left: @margin }}
+
+  .status-bar-right .inline-block {
+    margin-right: 0;
+    margin-left: @margin;
+    &:last-child { margin-right: @margin }}
+
+  div.atom-clock {
+    // background:     fade(white, 5%);
+    color:          white;
+    flex:           1 0 !important;
+    font-size:      1.25rem !important;
+    margin-top:    -3px;
+    font-weight:    100;
+    vertical-align: middle;
+    padding:        0 0 0 0.2em;
+    align-self:     stretch;
+    display:        flex;
+    align-items:    center;
+  }
+}

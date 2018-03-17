@@ -84,3 +84,41 @@
     }
   }
 }
+
+[class*='md'],
+[class*='markdown'] {
+  h1, h2, h3, h4 {
+  }
+
+  h1 {
+    text-transform: uppercase !important;
+    font-size: 4em !important;
+    margin: 0 !important;
+    letter-spacing: 0.04em !important;
+    font-weight: 100 !important;
+    font-family: Montserrat !important;
+    color: mix(@base-background-color, @text-color, 60%) !important;
+  }
+
+  h2 {
+    margin: 0 !important;
+    padding: 1.5rem 0 0 !important;
+    font-size: 1.8em !important;
+    font-weight: 600 !important;
+    // -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2.5px;
+    letter-spacing: -0.06em !important;
+    font-family: Montserrat !important;
+    color: mix(@text-color-info, @text-color) !important;
+  }
+
+  h3 {
+    margin: 0 !important;
+    padding: 1.5rem 0 0 !important;
+    font-size: 1.4em !important;
+    font-weight: 200 !important;
+    letter-spacing: 0em !important;
+    text-transform: lowercase !important;
+    color: mix(@text-color-info, @text-color, 75%) !important;
+  }
+}
