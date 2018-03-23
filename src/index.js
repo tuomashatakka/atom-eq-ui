@@ -8,8 +8,8 @@ let subscriptions
 export const config = require('./config.json')
 
 export function activate () {
-
   let settings  = new Settings()
+
   subscriptions = new CompositeDisposable()
   subscriptions.add(settings)
 }

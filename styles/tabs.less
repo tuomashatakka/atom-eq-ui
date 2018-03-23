@@ -55,6 +55,10 @@
   &:hover {
     transition-duration: @transition-time / 4 }
 
+  [tab-visibility='true'] [class*='dock-'] & {
+    display: none
+  }
+
   [tab-coloring='true'] & {
     --background-color: @color;
     --color: @color + #888;

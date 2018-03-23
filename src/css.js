@@ -29,6 +29,7 @@ function isStyleProperty (attr: string): boolean | string {
     return true
 
   let props = getStyleProperties()
+
   for (let name of props)
     if (attr === name)
       return name
@@ -39,8 +40,8 @@ function isStyleProperty (attr: string): boolean | string {
 
 export default function toCSS (obj: CSSDescription, indent: string = ''): string {
   let buffer = ''
-  indent = '  ' + indent
 
+  indent = '  ' + indent
   if (isPrimitive(obj))
     return obj.toString()
 
@@ -56,8 +57,8 @@ export default function toCSS (obj: CSSDescription, indent: string = ''): string
 
 export function toLessVariables (obj: CSSDescription, indent: string = ''): string {
   let buffer = ''
-  indent = '  ' + indent
 
+  indent = '  ' + indent
   if (isPrimitive(obj))
     return obj.toString()
 

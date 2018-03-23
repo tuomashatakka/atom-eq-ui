@@ -1,11 +1,13 @@
 'use babel'
 
 import filesystem from 'fs'
+import { resolve } from 'path'
+
 // import { sep } from 'path'
 // import { ASSETS_PATH, getBase64FromImageUrl, prefix, error } from './utils'
 
-const STYLES_ENTRY_PATH = __dirname + '/../index.less'
-const STYLES_CONFIG_PATH = __dirname + '/../styles/config.less'
+const STYLES_ENTRY_PATH  = resolve(__dirname, '../index.less')
+const STYLES_CONFIG_PATH = resolve(__dirname, '../styles/config.less')
 
 // // eslint-disable-next-line complexity
 // async function resolveValue (val) {

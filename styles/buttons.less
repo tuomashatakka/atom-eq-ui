@@ -102,26 +102,18 @@ button.icon,
     font-weight:    300;
     letter-spacing: 0.25em;
     text-transform: uppercase }
-}
 
+  &.btn-sm,
+  .btn-group-sm > & {
+    margin:     0 !important;
+    min-width:  4em;
+    box-sizing: border-box }
 
-
-
-.btn::before {
-  display: inline-block;
-  height: 0;
-  margin-top: -3px;
-}
-
-.btn-sm {
-  min-width: 4em;
-  margin: 0 !important;
-  box-sizing: border-box;
-}
-
-.btn::before {
-  vertical-align: middle;
-  margin: 0;
-  display: inline;
-  line-height: 0;
+  &::before {
+    margin:         0;
+    height:         0;
+    display:        inline-block;
+    line-height:    0;
+    margin-top:    -3.5px;
+    vertical-align: middle }
 }

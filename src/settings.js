@@ -20,17 +20,17 @@ function observe (key) {
 }
 
 
+type HandlerMethodType = (name: string, config: {} | string | number) => any
+type HandlerType = { [string]: HandlerMethodType | HandlerType }
 type HandlersType = {
-  colors: {},
-  layout: {},
-  display: {},
+  colors: HandlerType,
+  layout: HandlerType,
+  display: HandlerType,
 }
 
 type Color = {
   toRGBAString: () => string,
 }
-
-type HandlerMethodType = (name: string, config: {} | string | number) => any
 
 
 export default class ThemeSettings {
@@ -57,11 +57,11 @@ export default class ThemeSettings {
   }
 
   constructor () {
+    let keys     = [ 'colors', 'layout', 'display' ]
+
     this.state = {}
     this.subscriptions = new CompositeDisposable()
-    let keys     = [ 'colors', 'layout', 'display' ]
-    let updaters = keys.map(observe.bind(this))
-    this.subscriptions.add(...updaters)
+    this.subscriptions.add(...keys.map(observe.bind(this)))
   }
 
   @self
@@ -70,12 +70,12 @@ export default class ThemeSettings {
   }
 
   @self
-  update (category: string, config: {}) {
+  update (category: string, config: {} | number | string) {
     let entries = Object.entries(config)
-    for (let [attr, value] of entries) {
-      let handle = this.getHandlerFor(category, attr)
-      handle(attr, value)
-    }
+
+    for (let [ attr, value ] of entries)
+      this.getHandlerFor(category, attr)(attr, value)
+
     this.applyStylesheet()
   }
 
@@ -83,8 +83,11 @@ export default class ThemeSettings {
   getHandlerFor (...path: Array<string>): HandlerMethodType {
     let part
     let handler = this.handlers
+
     while (handler && (part = path.shift()))
       handler = handler[part]
+
+    // $FlowFixMe
     return handler
   }
 
@@ -115,15 +118,13 @@ export default class ThemeSettings {
   @self
   // eslint-disable-next-line class-methods-use-this
   updateTabVisibility (prop: string, val: boolean) {
-    let workspace = getWorkspace()
-    workspace.setAttribute('tab-visible', val.toString())
+    getWorkspace().setAttribute('tab-visibility', val.toString())
   }
 
   @self
   // eslint-disable-next-line class-methods-use-this
   updateTabColoring (prop: string, val: boolean) {
-    let workspace = getWorkspace()
-    workspace.setAttribute('tab-coloring', val.toString())
+    getWorkspace().setAttribute('tab-coloring', val.toString())
   }
 
   @self
@@ -154,9 +155,11 @@ export default class ThemeSettings {
   updateTintColor (attr: string, value: Color) {
     let prop  = `--${attr}`
     let color = value.toRGBAString()
+
     this.updateStyle({ [prop]: color })
     applyCss(this.less)
   }
+
 }
 
 function getWorkspace (): HTMLElement {

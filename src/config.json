@@ -5,13 +5,15 @@
     "description": "Hide unnecessary clutter",
     "type": "object",
     "properties": {
+
       "dockTabs": {
         "order": 1,
-        "title": "Show all tab bars",
-        "description": "Uncheck to disable docks' tab bars",
+        "title": "Hide docks' tab bars",
+        "description": "Show only the main pane container's tab bar",
         "type": "boolean",
-        "default": true
+        "default": false
       },
+
       "coloredTabs": {
         "order": 2,
         "title": "Inverse tab colors",
@@ -21,30 +23,34 @@
       }
     }
   },
+
   "layout": {
     "order": 1,
     "title": "Size & layout",
     "description": "General user interface definitions",
     "type": "object",
     "properties": {
+
       "scale": {
         "order": 1,
         "title": "Spacing for UI",
         "description": "Scale the user interface (does not affect the text editor font size)",
         "type": "integer",
         "default": 100,
-        "minimum": 50,
-        "maximum": 150
+        "minimum": 60,
+        "maximum": 170
       },
+
       "size": {
         "order": 2,
         "title": "Basis for UI components' sizing",
         "description": "Text, tabs, inputs, buttons, ...",
         "type": "integer",
         "default": 100,
-        "minimum": 50,
-        "maximum": 150
+        "minimum": 60,
+        "maximum": 170
       },
+
       "tabHeight": {
         "order": 3,
         "title": "Tab Height",
@@ -52,16 +58,25 @@
         "type": "number",
         "default": 1,
         "enum": [
+          0.5,
           0.6,
+          0.7,
           0.8,
+          0.9,
           1,
+          1.1,
           1.2,
+          1.3,
           1.4,
+          1.5,
           1.6,
+          1.7,
           1.8,
+          1.9,
           2
         ]
       },
+
       "statusBarHeight": {
         "order": 4,
         "title": "Status Bar Height",
@@ -69,27 +84,35 @@
         "type": "number",
         "default": 1,
         "enum": [
-          0.25,
           0.5,
+          0.675,
           0.75,
+          0.875,
           1,
+          1.125,
           1.25,
-          1.5
+          1.5,
+          1.75,
+          2,
+          2.5
         ]
       }
     }
   },
+
   "colors": {
     "order": 3,
     "title": "Theme colors",
     "type": "object",
     "properties": {
+
       "tint": {
         "order": 1,
         "title": "Tint color",
         "type": "color",
         "default": "#808080"
       }
+
     }
   }
 }
