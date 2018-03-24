@@ -21,7 +21,14 @@ function observe (key) {
 
 
 type HandlerMethodType = (name: string, config: {} | string | number) => any
-type HandlerType = { [string]: HandlerMethodType | HandlerType }
+type HandlerType = {
+  [
+    name: string
+  ]: HandlerMethodType
+  |
+  HandlerType
+}
+
 type HandlersType = {
   colors: HandlerType,
   layout: HandlerType,
