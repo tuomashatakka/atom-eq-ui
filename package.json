@@ -36,7 +36,7 @@
     "eslint-plugin-react-native": ">=3.2.1",
     "flow-bin": "^0.64.0",
     "flow-cli": ">=0.0.0-pre",
-    "flow-typed": ">=2.3.0"
+    "flow-typed": ">=3.8.0"
   },
   "engines": {
     "atom": ">=0.174.0 <2.0.0"
